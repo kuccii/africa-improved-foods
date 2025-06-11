@@ -74,23 +74,29 @@ export const Hero: React.FC = () => {
               <ArrowRight className="h-6 w-6 group-hover:translate-x-2 transition-transform duration-300" />
             </button>
 
-            <button className="
-              group 
-              border-2 border-white 
-              text-white 
-              hover:bg-white hover:text-gray-900 
-              px-10 py-5 
-              rounded-3xl 
-              font-semibold 
-              text-lg 
-              shadow-xl 
-              transition-all duration-300 
-              flex items-center space-x-3
-              select-none
-            ">
+            <a 
+              href="https://youtu.be/tSklYGnjQhI"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                group 
+                border-2 border-white 
+                text-white 
+                hover:bg-white hover:text-gray-900 
+                px-10 py-5 
+                rounded-3xl 
+                font-semibold 
+                text-lg 
+                shadow-xl 
+                transition-all duration-300 
+                flex items-center space-x-3
+                select-none
+                cursor-pointer
+              "
+            >
               <Play className="h-6 w-6" />
               <span>Watch Our Story</span>
-            </button>
+            </a>
           </div>
 
           {/* Stats Section */}

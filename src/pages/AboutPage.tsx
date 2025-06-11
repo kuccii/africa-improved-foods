@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
-import { Products } from '../components/Products';
+import { About } from '../components/About';
+import { Impact } from '../components/Impact';
+import { Partnership } from '../components/Partnership';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -15,163 +17,181 @@ const staggerContainer = {
   }
 };
 
-const productCategories = [
+const milestones = [
   {
-    title: 'Sustainable Agriculture',
-    description: 'Innovative farming solutions for better yields and environmental protection.',
-    icon: '🌱',
-    features: [
-      'Climate-smart farming techniques',
-      'Water conservation systems',
-      'Organic farming methods'
-    ]
+    year: '2015',
+    title: 'Foundation',
+    description: 'Established with a vision to transform food security in Africa',
+    image: '/images/foundation.jpg'
   },
   {
-    title: 'Food Processing',
-    description: 'State-of-the-art processing facilities ensuring quality and safety.',
-    icon: '🏭',
-    features: [
-      'Advanced quality control',
-      'Hygienic processing methods',
-      'Sustainable packaging'
-    ]
+    year: '2017',
+    title: 'First Processing Plant',
+    description: 'Launched our first state-of-the-art processing facility',
+    image: '/images/plant.jpg'
   },
   {
-    title: 'Distribution Network',
-    description: 'Efficient logistics and supply chain management.',
-    icon: '🚚',
-    features: [
-      'Cold chain logistics',
-      'Real-time tracking',
-      'Last-mile delivery solutions'
-    ]
+    year: '2019',
+    title: 'Regional Expansion',
+    description: 'Expanded operations to multiple countries across Africa',
+    image: '/images/expansion.jpg'
+  },
+  {
+    year: '2021',
+    title: 'Sustainability Award',
+    description: 'Recognized for sustainable agricultural practices',
+    image: '/images/award.jpg'
+  },
+  {
+    year: '2023',
+    title: 'Innovation Hub',
+    description: 'Established research and development center for food innovation',
+    image: '/images/innovation.jpg'
   }
 ];
 
-const certifications = [
-  {
-    name: 'ISO 22000',
-    description: 'Food Safety Management System',
-    icon: '🏆'
-  },
-  {
-    name: 'Organic Certification',
-    description: 'Certified Organic Production',
-    icon: '🌿'
-  },
-  {
-    name: 'Fair Trade',
-    description: 'Ethical Trading Practices',
-    icon: '🤝'
-  }
-];
-
-export const ProductsPage = () => {
+export const AboutPage = () => {
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="decorative-circle w-72 h-72 -top-40 right-1/4 absolute" />
-      <div className="decorative-circle w-96 h-96 -bottom-48 -left-48 absolute" />
-      <div className="decorative-square w-40 h-40 top-1/3 -right-20 rotate-45 absolute" />
+    <div className="min-h-screen py-16 relative overflow-hidden">
+      {/* Background Blurs */}
+      <div className="absolute w-96 h-96 bg-green-200/30 rounded-full blur-3xl -top-20 -left-20 z-0" />
+      <div className="absolute w-96 h-96 bg-yellow-200/20 rounded-full blur-2xl -bottom-32 -right-32 z-0" />
+      <div className="absolute w-48 h-48 bg-pink-300/20 rotate-45 blur-2xl top-1/3 right-1/4 z-0" />
 
-      {/* Main content container */}
+      {/* Title */}
       <motion.div
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-0"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
         <motion.h1
-          className="text-4xl font-bold gradient-text mb-8 mt-0"
+          className="text-4xl font-bold gradient-text text-center"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Our Products
+          About Us
         </motion.h1>
-
-        <motion.div
-          variants={staggerContainer}
-          initial="initial"
-          animate="animate"
-          className="space-y-16"
-        >
-          {/* Product categories */}
-          <motion.div variants={fadeInUp}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              {productCategories.map((category, index) => (
-                <motion.div
-                  key={index}
-                  className="glass-card p-6 cursor-pointer"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="text-4xl mb-4">{category.icon}</div>
-                  <h3 className="text-xl font-semibold gradient-text mb-2">{category.title}</h3>
-                  <p className="text-gray-600 mb-4">{category.description}</p>
-                  <ul className="space-y-2">
-                    {category.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-gray-600">
-                        <span className="text-green-500 mr-2">✓</span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </motion.div>
       </motion.div>
 
-      {/* Full-width Products Section below product categories */}
+      {/* Full Width About */}
       <motion.div
-        className="w-full mt-8 relative z-10"
+        className="relative z-10 w-full"
         initial="initial"
         animate="animate"
         variants={fadeInUp}
       >
         <div className="glass-card p-8 w-full">
-          <Products />
+          <About />
         </div>
       </motion.div>
 
-      {/* Certifications */}
-      <motion.div variants={fadeInUp} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
-        <div className="gradient-section p-8">
-          <h2 className="text-2xl font-semibold gradient-text mb-4">Our Certifications</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {certifications.map((cert, index) => (
-              <motion.div
-                key={index}
-                className="glass-card p-6 cursor-pointer"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="text-4xl mb-4">{cert.icon}</div>
-                <h3 className="text-lg font-semibold gradient-text mb-2">{cert.name}</h3>
-                <p className="text-gray-600">{cert.description}</p>
-              </motion.div>
-            ))}
-          </div>
+      {/* Main Content */}
+      <motion.div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-16"
+        variants={staggerContainer}
+        initial="initial"
+        animate="animate"
+      >
+        <motion.div className="space-y-16">
+          {/* Mission */}
+          <motion.div variants={fadeInUp}>
+            <div className="gradient-section p-8">
+              <h2 className="text-2xl font-semibold gradient-text mb-4">Our Mission</h2>
+              <p className="text-gray-600 leading-relaxed">
+                We are dedicated to transforming lives through sustainable agriculture and food security initiatives.
+                Our mission is to empower communities and create lasting positive impact through innovative solutions
+                and partnerships.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Timeline */}
+          <motion.div variants={fadeInUp}>
+            <div className="gradient-section p-8">
+              <h2 className="text-2xl font-semibold gradient-text mb-8">Our Journey</h2>
+              <div className="relative">
+                <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-1 bg-green-200/50" />
+                <div className="space-y-12">
+                  {milestones.map((milestone, index) => (
+                    <motion.div
+                      key={index}
+                      className={`relative flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row-reverse' : ''} items-center md:items-start gap-6`}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-br from-green-600 to-green-800 rounded-full shadow-lg z-10" />
+
+                      <div className="glass-card p-6 w-full md:w-1/2 z-10">
+                        <p className="text-sm text-green-700 font-bold mb-1">{milestone.year}</p>
+                        <h3 className="text-xl font-semibold gradient-text mb-2">{milestone.title}</h3>
+                        <p className="text-gray-600">{milestone.description}</p>
+                      </div>
+
+                      <div className="w-full md:w-1/2">
+                        <img
+                          src={milestone.image}
+                          alt={milestone.title}
+                          className="w-full h-64 object-cover rounded-xl shadow-md border border-gray-200"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Impact */}
+          <motion.div variants={fadeInUp}>
+            <div className="glass-card p-8">
+              <Impact />
+            </div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+
+      {/* Full Width Partnership */}
+      <motion.div
+        className="relative z-10 w-full mt-16"
+        variants={fadeInUp}
+        initial="initial"
+        animate="animate"
+      >
+        <div className="glass-card p-8 w-full">
+          <Partnership />
         </div>
       </motion.div>
 
-      {/* Why choose us */}
-      <motion.div variants={fadeInUp} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
-        <div className="gradient-section p-8">
-          <h2 className="text-2xl font-semibold gradient-text mb-4">Why Choose Our Products?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="glass-card p-6">
-              <h3 className="text-lg font-semibold gradient-text mb-2">Quality Assured</h3>
-              <p className="text-gray-600">All our products meet the highest quality standards and certifications.</p>
-            </div>
-            <div className="glass-card p-6">
-              <h3 className="text-lg font-semibold gradient-text mb-2">Sustainable Practices</h3>
-              <p className="text-gray-600">Environmentally conscious production methods and responsible sourcing.</p>
+      {/* Values */}
+      <motion.div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-16"
+        variants={staggerContainer}
+        initial="initial"
+        animate="animate"
+      >
+        <motion.div variants={fadeInUp}>
+          <div className="gradient-section p-8">
+            <h2 className="text-2xl font-semibold gradient-text mb-4">Our Values</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="glass-card p-6">
+                <h3 className="text-lg font-semibold gradient-text mb-2">Sustainability</h3>
+                <p className="text-gray-600">Committed to environmentally responsible practices and long-term impact.</p>
+              </div>
+              <div className="glass-card p-6">
+                <h3 className="text-lg font-semibold gradient-text mb-2">Innovation</h3>
+                <p className="text-gray-600">Continuously seeking new solutions to address complex challenges.</p>
+              </div>
+              <div className="glass-card p-6">
+                <h3 className="text-lg font-semibold gradient-text mb-2">Community</h3>
+                <p className="text-gray-600">Building strong partnerships and empowering local communities.</p>
+              </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </div>
   );

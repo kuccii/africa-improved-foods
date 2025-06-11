@@ -1,4 +1,3 @@
-import React from 'react';
 import { ArrowRight, Play } from 'lucide-react';
 
 export const Hero: React.FC = () => {

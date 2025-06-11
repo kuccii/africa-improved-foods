@@ -56,20 +56,20 @@ const locations = [
 
 export const ContactPage = () => {
   return (
-    <div className="min-h-screen py-16 relative">
+    <div className="min-h-screen pt-0 mt-0 pb-16 relative scroll-m-0 first:mt-0">
       {/* Decorative elements */}
       <div className="decorative-circle w-80 h-80 -top-40 -right-40" />
       <div className="decorative-circle w-64 h-64 -bottom-32 left-1/4" />
       <div className="decorative-square w-48 h-48 top-1/3 -left-24 rotate-45" />
-      
+
       <motion.div
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-0 mt-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <motion.h1 
-          className="text-4xl font-bold gradient-text mb-8"
+        <motion.h1
+          className="text-4xl font-bold gradient-text mb-8 mt-0 pt-0"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -83,6 +83,7 @@ export const ContactPage = () => {
           animate="animate"
           className="space-y-16"
         >
+          {/* Contact Methods */}
           <motion.div variants={fadeInUp}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               {contactMethods.map((method, index) => (
@@ -102,12 +103,14 @@ export const ContactPage = () => {
             </div>
           </motion.div>
 
+          {/* Contact Form */}
           <motion.div variants={fadeInUp}>
             <div className="glass-card p-8">
               <Contact />
             </div>
           </motion.div>
 
+          {/* Locations */}
           <motion.div variants={fadeInUp}>
             <div className="gradient-section p-8">
               <h2 className="text-2xl font-semibold gradient-text mb-4">Our Locations</h2>
@@ -131,6 +134,7 @@ export const ContactPage = () => {
             </div>
           </motion.div>
 
+          {/* Business Hours */}
           <motion.div variants={fadeInUp}>
             <div className="gradient-section p-8">
               <h2 className="text-2xl font-semibold gradient-text mb-4">Business Hours</h2>
@@ -154,4 +158,4 @@ export const ContactPage = () => {
       </motion.div>
     </div>
   );
-}; 
+};

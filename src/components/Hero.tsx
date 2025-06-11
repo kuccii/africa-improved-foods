@@ -8,7 +8,7 @@ export const Hero: React.FC = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       {/* Background Image + Overlay with slow zoom effect */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-[1.15] sm:scale-[1.05] animate-zoomSlow transition-transform duration-[10000ms] ease-in-out"
+        className={`absolute inset-0 bg-cover bg-center bg-no-repeat scale-[1.15] sm:scale-[1.05] animate-zoomSlow transition-transform duration-[10000ms] ease-in-out ${isVideoOpen ? 'blur-xl' : ''}`}
         style={{
           backgroundImage: 'url("https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg?auto=compress&cs=tinysrgb&w=1600")',
         }}
@@ -17,11 +17,11 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* Decorative Glow Circles - subtle & soft */}
-      <div className="absolute -top-24 left-1/4 w-[28rem] h-[28rem] bg-green-400 opacity-15 rounded-full filter blur-4xl z-0" />
-      <div className="absolute bottom-8 right-1/3 w-[18rem] h-[18rem] bg-yellow-300 opacity-10 rounded-full filter blur-3xl z-0" />
+      <div className={`absolute -top-24 left-1/4 w-[28rem] h-[28rem] bg-green-400 opacity-15 rounded-full filter blur-4xl z-0 ${isVideoOpen ? 'blur-2xl' : ''}`} />
+      <div className={`absolute bottom-8 right-1/3 w-[18rem] h-[18rem] bg-yellow-300 opacity-10 rounded-full filter blur-3xl z-0 ${isVideoOpen ? 'blur-2xl' : ''}`} />
 
       {/* Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 text-center">
+      <div className={`relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 text-center ${isVideoOpen ? 'blur-sm' : ''}`}>
         <div className="max-w-5xl mx-auto">
           {/* MASSIVE Heading */}
           <h1
@@ -124,7 +124,7 @@ export const Hero: React.FC = () => {
 
       {/* Video Modal */}
       {isVideoOpen && (
-        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="relative w-full max-w-4xl aspect-video">
             <button
               onClick={() => setIsVideoOpen(false)}

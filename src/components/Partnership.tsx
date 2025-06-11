@@ -5,22 +5,22 @@ export const Partnership = () => {
     {
       name: 'DSM',
       description: 'Global science-based company focused on nutrition, health and sustainable living',
-      logo: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=300',
+      logo: 'https://panaceutics.com/wp-content/uploads/2020/11/logo-dsm.svg',
     },
     {
       name: 'IFC',
       description: 'International Finance Corporation - World Bank Group member',
-      logo: 'https://images.pexels.com/photos/3184340/pexels-photo-3184340.jpeg?auto=compress&cs=tinysrgb&w=300',
+      logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMWTTJVY33LpzRl5QMPAHJUCf19RRfxoLM-q8H6xiwQou3t8cN9snMyIwOY6jS0phUt_c&usqp=CAU',
     },
     {
       name: 'FMO',
       description: 'Dutch development bank supporting sustainable private sector growth',
-      logo: 'https://images.pexels.com/photos/3184341/pexels-photo-3184341.jpeg?auto=compress&cs=tinysrgb&w=300',
+      logo: 'https://www.fmo.nl/l/library/download/urn:uuid:605749ef-5bdd-414b-97cd-6e435ef1420b/fmo+rainbow+logo.png?scaleType=1&width=194',
     },
     {
       name: 'Government of Rwanda',
       description: 'Strategic partnership supporting national development goals',
-      logo: 'https://images.pexels.com/photos/3184342/pexels-photo-3184342.jpeg?auto=compress&cs=tinysrgb&w=300',
+      logo: 'https://www.gov.rw/index.php?eID=dumpFile&t=f&f=1686&token=bbbb57e8d97711973cf02637df254ced6259f00f',
     },
   ];
 

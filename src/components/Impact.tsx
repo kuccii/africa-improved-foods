@@ -38,21 +38,21 @@ export const Impact = () => {
       description:
         'AIF develops nutritious products made in Africa, using locally grown cereals fortified with essential vitamins to fight stunting across the continent.',
       image:
-        'https://images.pexels.com/photos/6069090/pexels-photo-6069090.jpeg?auto=compress&cs=tinysrgb&w=800',
+        'https://h40.4c9.myftpupload.com/wp-content/uploads/2023/04/Component-163-%E2%80%93-1.jpg',
     },
     {
       title: 'Employment Development',
       description:
         'AIF hires local talent and fosters growth through dedicated coaching, hands-on training, and mentorship programs.',
       image:
-        'https://images.pexels.com/photos/5256816/pexels-photo-5256816.jpeg?auto=compress&cs=tinysrgb&w=800',
+        'https://h40.4c9.myftpupload.com/wp-content/uploads/2023/04/Component-131-%E2%80%93-1.jpg',
     },
     {
       title: 'Farmer Support',
       description:
         'From seed development to post-harvest handling, AIF supports farmers with training, tools, and agronomy expertise.',
       image:
-        'https://images.pexels.com/photos/1482101/pexels-photo-1482101.jpeg?auto=compress&cs=tinysrgb&w=800',
+        'https://www.africaoutlookmag.com/media/2022/11/africa-improved-foods-1-1622209718.profileImage.2x-jpg-webp-webp.webp',
     },
   ];
 

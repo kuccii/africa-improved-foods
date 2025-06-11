@@ -94,7 +94,7 @@ export const About = () => {
           </div>
           <div className="relative min-h-[384px]">
             <img
-              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+              src="https://h40.4c9.myftpupload.com/wp-content/uploads/2023/04/Component-162-%E2%80%93-1-1-1-min.jpg"
               alt="African farmland"
               className="object-cover w-full h-full"
               loading="lazy"

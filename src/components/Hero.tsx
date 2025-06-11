@@ -59,20 +59,29 @@ export const Hero: React.FC = () => {
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
-            <button className="
-              group 
-              bg-green-600 hover:bg-green-700 
-              text-white 
-              px-10 py-5 
-              rounded-3xl 
-              font-semibold 
-              text-lg 
-              shadow-xl 
-              transition-all duration-300 
-              flex items-center space-x-3
-              transform hover:scale-110
-              select-none
-            ">
+            <button 
+              onClick={() => {
+                const impactSection = document.getElementById('impact-section');
+                if (impactSection) {
+                  impactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="
+                group 
+                bg-green-600 hover:bg-green-700 
+                text-white 
+                px-10 py-5 
+                rounded-3xl 
+                font-semibold 
+                text-lg 
+                shadow-xl 
+                transition-all duration-300 
+                flex items-center space-x-3
+                transform hover:scale-110
+                select-none
+                cursor-pointer
+              "
+            >
               <span>Learn About Our Impact</span>
               <ArrowRight className="h-6 w-6 group-hover:translate-x-2 transition-transform duration-300" />
             </button>

@@ -10,7 +10,7 @@ export const Products = () => {
       description:
         'A highly specialized cereal made from pre-cooked grains blended with skimmed milk powder, sugar, soy oil and micronutrients. Used to treat and prevent moderate acute malnutrition among young children aged 6+ months.',
       image:
-        'https://images.pexels.com/photos/1295572/pexels-photo-1295572.jpeg?auto=compress&cs=tinysrgb&w=600',
+        'https://africaimprovedfoods.com/wp-content/uploads/2023/06/Super_Cereal_Plus_packshot_facing.png',
       features: ['Specialized cereal', 'Pre-cooked grains', 'Micronutrients', '6+ months'],
     },
     {
@@ -18,7 +18,7 @@ export const Products = () => {
       description:
         'A highly nutritious complementary porridge for infants and young children older than 6 months. A blend of maize, soya, milk powder, sugar, vitamins & minerals.',
       image:
-        'https://images.pexels.com/photos/4202325/pexels-photo-4202325.jpeg?auto=compress&cs=tinysrgb&w=600',
+        'https://africaimprovedfoods.com/wp-content/uploads/2023/06/Shisha_Kibondo_Infants_packshot_facing.png',
       features: ['Complementary food', 'Maize & soya blend', 'Essential vitamins', 'Mineral fortified'],
     },
     {
@@ -26,7 +26,7 @@ export const Products = () => {
       description:
         'A highly nutritious porridge for pregnant or breastfeeding women. Essential for good health of the mother and her unborn child. A blend of maize, soya, vitamins and minerals.',
       image:
-        'https://images.pexels.com/photos/5938323/pexels-photo-5938323.jpeg?auto=compress&cs=tinysrgb&w=600',
+        'https://africaimprovedfoods.com/wp-content/uploads/2023/06/Shisha_Kibondo_Mothers_packshot_facing.png',
       features: ['Maternal nutrition', 'Pregnancy support', 'Natural ingredients', 'Vitamin enriched'],
     },
   ];
@@ -37,7 +37,7 @@ export const Products = () => {
       description:
         'Specifically created to provide essential nutrients such as proteins, vitamins & minerals to support healthy body and mind development for strong growth of children.',
       image:
-        'https://images.pexels.com/photos/6393316/pexels-photo-6393316.jpeg?auto=compress&cs=tinysrgb&w=600',
+        'https://africaimprovedfoods.com/wp-content/uploads/2023/05/PACK-MOCKUP-NOOTRI-ALLFAMILY-50G.webp',
       features: ['Essential nutrients', 'Child development', 'Natural grains', 'Aflatoxin free'],
     },
     {
@@ -45,7 +45,7 @@ export const Products = () => {
       description:
         'Instant infant cereals specifically created to provide essential nutrients to support healthy body and mind development for strong growth of children.',
       image:
-        'https://images.pexels.com/photos/5029857/pexels-photo-5029857.jpeg?auto=compress&cs=tinysrgb&w=600',
+        'https://murukali.com/cdn/shop/files/Nootri-Baby-murukali-com-9188_1197x1197.jpg?v=1710031030',
       features: ['Instant cereals', 'Infant nutrition', 'Easy preparation', 'Growth support'],
     },
     {
@@ -53,7 +53,7 @@ export const Products = () => {
       description:
         'Delicious and instant breakfast cereals to enjoy with your family every morning. A convenient way to contribute to the healthy growth of your children.',
       image:
-        'https://images.pexels.com/photos/3892469/pexels-photo-3892469.jpeg?auto=compress&cs=tinysrgb&w=600',
+        'https://africaimprovedfoods.com/wp-content/uploads/2023/05/PACK-MOCKUP-NOOTRI-ALLFAMILY-50G.webp',
       features: ['Family breakfast', 'Instant preparation', 'Nutritious start', 'Delicious taste'],
     },
   ];

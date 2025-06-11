@@ -21,7 +21,7 @@ export const Navigation = () => {
         {/* Logo */}
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5">
-            <img src="/images/favilogo.png" alt="Africa Improved Foods Logo" className="h-12 w-auto" />
+            <img src="https://africaimprovedfoods.com/wp-content/uploads/2021/02/favilogo.png" alt="Africa Improved Foods Logo" className="h-12 w-auto" />
           </Link>
         </div>
 

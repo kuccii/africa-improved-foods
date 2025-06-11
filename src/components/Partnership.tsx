@@ -52,44 +52,43 @@ export const Partnership = () => {
       id="partnership"
       className="relative py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden"
     >
-      {/* Background shapes */}
+      {/* Blurred Background Gradients */}
       <div
-        aria-hidden="true"
-        className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-to-tr from-emerald-500 via-green-400 to-emerald-600 opacity-20 blur-3xl pointer-events-none"
+        aria-hidden
+        className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-to-tr from-emerald-500 via-green-400 to-emerald-600 opacity-20 pointer-events-none"
         style={{ filter: 'blur(120px)' }}
       />
       <div
-        aria-hidden="true"
-        className="absolute bottom-20 right-10 w-[600px] h-[600px] rounded-full bg-gradient-to-bl from-green-600 via-emerald-400 to-green-500 opacity-15 blur-2xl pointer-events-none"
+        aria-hidden
+        className="absolute bottom-20 right-10 w-[600px] h-[600px] rounded-full bg-gradient-to-bl from-green-600 via-emerald-400 to-green-500 opacity-15 pointer-events-none"
         style={{ filter: 'blur(100px)' }}
       />
       <div
-        aria-hidden="true"
-        className="absolute top-1/3 left-10 w-[400px] h-[400px] rounded-full bg-gradient-to-r from-green-300 via-emerald-200 to-green-300 opacity-10 blur-xl pointer-events-none"
+        aria-hidden
+        className="absolute top-1/3 left-10 w-[400px] h-[400px] rounded-full bg-gradient-to-r from-green-300 via-emerald-200 to-green-300 opacity-10 pointer-events-none"
         style={{ filter: 'blur(80px)' }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-16 px-4 sm:px-0">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-16">
           <h2 className="text-4xl font-extrabold mb-6 bg-gradient-to-r from-emerald-400 via-green-500 to-emerald-600 bg-clip-text text-transparent">
             Our Partnership
           </h2>
           <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Africa Improved Foods (AIF) is a public-private partnership involving DSM, IFC, FMO, 
-            and Government of Rwanda, combining expertise and resources for maximum impact.
+            Africa Improved Foods (AIF) is a public-private partnership involving DSM, IFC, FMO, and the Government of Rwanda—combining expertise and resources for maximum impact.
           </p>
         </div>
 
-        {/* Partnership Benefits */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-20 px-4 sm:px-0">
+        {/* Benefits */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-20">
           {benefits.map(({ icon: Icon, title, description }, i) => (
             <article
               key={i}
               className="bg-gray-800/20 backdrop-blur-sm rounded-xl p-8 flex flex-col items-center text-center transition-transform duration-300 hover:scale-[1.05] shadow-md hover:shadow-lg"
               aria-label={title}
             >
-              <div className="bg-emerald-100 group-hover:bg-emerald-200 w-16 h-16 rounded-full flex items-center justify-center mb-5 transition-colors duration-300">
+              <div className="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mb-5 transition-colors duration-300">
                 <Icon className="h-9 w-9 text-emerald-600" />
               </div>
               <h3 className="text-lg font-semibold mb-3 bg-gradient-to-r from-emerald-400 via-green-500 to-emerald-600 bg-clip-text text-transparent">
@@ -101,7 +100,7 @@ export const Partnership = () => {
         </div>
 
         {/* Partners Grid */}
-        <div className="bg-gray-800/20 backdrop-blur-sm rounded-3xl p-14 shadow-md max-w-full">
+        <div className="bg-gray-800/20 backdrop-blur-sm rounded-3xl p-14 shadow-md">
           <h3 className="text-3xl font-extrabold text-center mb-14 bg-gradient-to-r from-emerald-400 via-green-500 to-emerald-600 bg-clip-text text-transparent">
             Our Strategic Partners
           </h3>
@@ -128,13 +127,12 @@ export const Partnership = () => {
         </div>
 
         {/* Investment Highlight */}
-        <div className="mt-24 bg-gray-800/20 backdrop-blur-sm rounded-3xl p-14 text-center shadow-md max-w-4xl mx-auto px-6">
+        <div className="mt-24 bg-gray-800/20 backdrop-blur-sm rounded-3xl p-14 text-center shadow-md max-w-4xl mx-auto">
           <h3 className="text-4xl font-extrabold mb-6 bg-gradient-to-r from-emerald-400 via-green-500 to-emerald-600 bg-clip-text text-transparent">
             $65 Million Investment
           </h3>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Significant investment in Rwanda with best-in-class technology, demonstrating our 
-            commitment to building sustainable food systems across Africa.
+          <p className="text-xl text-gray-300 leading-relaxed">
+            Significant investment in Rwanda with best-in-class technology, demonstrating our commitment to building sustainable food systems across Africa.
           </p>
         </div>
       </div>

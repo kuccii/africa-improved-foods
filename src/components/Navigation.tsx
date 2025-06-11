@@ -16,32 +16,37 @@ export const Navigation = () => {
   const location = useLocation();
 
   return (
-    <header className="bg-white shadow-sm">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur shadow-md">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8" aria-label="Global">
+        {/* Logo */}
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5">
-            <span className="text-2xl font-bold text-indigo-600">Your Logo</span>
+            <img src="/images/favilogo.png" alt="Africa Improved Foods Logo" className="h-12 w-auto" />
           </Link>
         </div>
+
+        {/* Mobile Menu Button */}
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+            className="inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 hover:text-green-600 transition"
             onClick={() => setMobileMenuOpen(true)}
           >
-            <span className="sr-only">Open main menu</span>
-            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            <span className="sr-only">Open menu</span>
+            <Bars3Icon className="h-6 w-6" />
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12">
+
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex lg:gap-x-10">
           {navigation.map((item) => (
             <Link
               key={item.name}
               to={item.href}
-              className={`text-sm font-semibold leading-6 ${
+              className={`relative text-sm font-semibold transition duration-300 px-1 ${
                 location.pathname === item.href
-                  ? 'text-indigo-600'
-                  : 'text-gray-900 hover:text-indigo-600'
+                  ? 'text-green-600 after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:bg-green-500'
+                  : 'text-gray-800 hover:text-green-600'
               }`}
             >
               {item.name}
@@ -49,41 +54,41 @@ export const Navigation = () => {
           ))}
         </div>
       </nav>
+
+      {/* Mobile Navigation Dialog */}
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-        <div className="fixed inset-0 z-10" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <div className="fixed inset-0 z-50 bg-black/30 backdrop-blur-sm" />
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-4/5 max-w-sm bg-white px-6 py-6 shadow-xl transition-all duration-500 ease-in-out">
+          {/* Mobile Top */}
           <div className="flex items-center justify-between">
-            <Link to="/" className="-m-1.5 p-1.5">
-              <span className="text-2xl font-bold text-indigo-600">Your Logo</span>
+            <Link to="/" className="text-2xl font-extrabold tracking-tight text-green-600">
+              Africa Foods
             </Link>
             <button
               type="button"
-              className="-m-2.5 rounded-md p-2.5 text-gray-700"
+              className="p-2 text-gray-700 hover:text-red-500"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="sr-only">Close menu</span>
-              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+              <XMarkIcon className="h-6 w-6" />
             </button>
           </div>
-          <div className="mt-6 flow-root">
-            <div className="-my-6 divide-y divide-gray-500/10">
-              <div className="space-y-2 py-6">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 ${
-                      location.pathname === item.href
-                        ? 'text-indigo-600'
-                        : 'text-gray-900 hover:bg-gray-50'
-                    }`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
+
+          {/* Mobile Nav Links */}
+          <div className="mt-6">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block rounded-md px-4 py-3 text-base font-semibold transition ${
+                  location.pathname === item.href
+                    ? 'text-green-600 bg-green-50'
+                    : 'text-gray-800 hover:bg-gray-100 hover:text-green-600'
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
           </div>
         </Dialog.Panel>
       </Dialog>

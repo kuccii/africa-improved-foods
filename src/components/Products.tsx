@@ -85,10 +85,12 @@ export const Products = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-extrabold text-white mb-6">Our Products</h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight leading-tight">
+            Our Products
+          </h2>
+          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Nutritious, affordable, and accessible products made in Africa from cereals grown in Africa,
-            fortified with essential vitamins and macro nutrients to tackle stunting on the continent.
+            fortified with essential vitamins and macronutrients to tackle stunting on the continent.
           </p>
         </div>
 
@@ -97,25 +99,25 @@ export const Products = () => {
           <div className="p-1 flex space-x-2 bg-gray-800 rounded-lg shadow-inner">
             <button
               onClick={() => setActiveCategory('institutional')}
-              className={`px-6 py-2 rounded-md font-semibold transition-all duration-300 flex items-center space-x-2 ${
+              className={`px-6 py-2 rounded-md font-medium transition-all duration-300 flex items-center space-x-2 ${
                 activeCategory === 'institutional'
                   ? 'bg-emerald-600 text-white shadow-lg'
                   : 'text-gray-300 hover:bg-gray-700 hover:text-white'
               }`}
             >
               <Building className="h-5 w-5" />
-              <span>Institutional</span>
+              <span className="text-sm sm:text-base">Institutional</span>
             </button>
             <button
               onClick={() => setActiveCategory('consumer')}
-              className={`px-6 py-2 rounded-md font-semibold transition-all duration-300 flex items-center space-x-2 ${
+              className={`px-6 py-2 rounded-md font-medium transition-all duration-300 flex items-center space-x-2 ${
                 activeCategory === 'consumer'
                   ? 'bg-emerald-600 text-white shadow-lg'
                   : 'text-gray-300 hover:bg-gray-700 hover:text-white'
               }`}
             >
               <Users className="h-5 w-5" />
-              <span>Consumer</span>
+              <span className="text-sm sm:text-base">Consumer</span>
             </button>
           </div>
         </div>
@@ -125,7 +127,7 @@ export const Products = () => {
           {products.map((product, idx) => (
             <div
               key={idx}
-              className="bg-white bg-opacity-10 backdrop-blur-md rounded-3xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300 cursor-pointer"
+              className="bg-gray-800/20 backdrop-blur-sm rounded-xl flex flex-col transition-transform duration-300 hover:scale-[1.05] shadow-md hover:shadow-lg"
             >
               <div className="relative h-52 overflow-hidden rounded-t-3xl">
                 <img
@@ -136,9 +138,13 @@ export const Products = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-t-3xl" />
               </div>
               <div className="p-6">
-                <h3 className="text-2xl font-bold text-emerald-400 mb-3">{product.name}</h3>
-                <p className="text-gray-200 mb-5 leading-relaxed text-sm">{product.description}</p>
-                <ul className="text-emerald-300 text-sm space-y-2 list-disc list-inside">
+                <h3 className="text-xl font-semibold text-emerald-400 mb-2 tracking-wide">
+                  {product.name}
+                </h3>
+                <p className="text-sm text-gray-300 mb-4 leading-relaxed">
+                  {product.description}
+                </p>
+                <ul className="text-sm text-emerald-300 space-y-1 list-disc list-inside">
                   {product.features.map((feature, i) => (
                     <li key={i}>{feature}</li>
                   ))}
@@ -149,7 +155,7 @@ export const Products = () => {
         </div>
       </div>
 
-      {/* Animations for blobs */}
+      {/* Blob animations */}
       <style>{`
         @keyframes blob {
           0%, 100% {

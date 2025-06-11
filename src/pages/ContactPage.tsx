@@ -58,9 +58,9 @@ export const ContactPage = () => {
   return (
     <div className="min-h-screen pt-0 mt-0 pb-16 relative scroll-m-0 first:mt-0">
       {/* Decorative elements */}
-      <div className="decorative-circle w-80 h-80 -top-40 -right-40" />
-      <div className="decorative-circle w-64 h-64 -bottom-32 left-1/4" />
-      <div className="decorative-square w-48 h-48 top-1/3 -left-24 rotate-45" />
+      <div className="decorative-circle w-80 h-80 -top-40 -right-40 absolute z-0" />
+      <div className="decorative-circle w-64 h-64 -bottom-32 left-1/4 absolute z-0" />
+      <div className="decorative-square w-48 h-48 top-1/3 -left-24 rotate-45 absolute z-0" />
 
       <motion.div
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-0 mt-0"

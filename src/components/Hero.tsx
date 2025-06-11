@@ -1,6 +1,9 @@
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight, Play, X } from 'lucide-react';
+import { useState } from 'react';
 
 export const Hero: React.FC = () => {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       {/* Background Image + Overlay with slow zoom effect */}
@@ -74,10 +77,8 @@ export const Hero: React.FC = () => {
               <ArrowRight className="h-6 w-6 group-hover:translate-x-2 transition-transform duration-300" />
             </button>
 
-            <a 
-              href="https://youtu.be/tSklYGnjQhI"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button 
+              onClick={() => setIsVideoOpen(true)}
               className="
                 group 
                 border-2 border-white 
@@ -96,7 +97,7 @@ export const Hero: React.FC = () => {
             >
               <Play className="h-6 w-6" />
               <span>Watch Our Story</span>
-            </a>
+            </button>
           </div>
 
           {/* Stats Section */}
@@ -120,6 +121,27 @@ export const Hero: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Video Modal */}
+      {isVideoOpen && (
+        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
+          <div className="relative w-full max-w-4xl aspect-video">
+            <button
+              onClick={() => setIsVideoOpen(false)}
+              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+            >
+              <X className="h-8 w-8" />
+            </button>
+            <iframe
+              className="w-full h-full rounded-lg shadow-2xl"
+              src="https://www.youtube.com/embed/tSklYGnjQhI?autoplay=1"
+              title="Africa Improved Foods Story"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">

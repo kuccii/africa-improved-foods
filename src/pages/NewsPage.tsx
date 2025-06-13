@@ -22,9 +22,9 @@ export const NewsPage = () => {
         initial="initial"
         animate="animate"
         variants={fadeInUp}
-        viewport={{ once: false, amount: 0.15 }}
+        viewport={{ once: false, amount: 0.5 }}
       >
-        <motion.h1
+        {/* <motion.h1
           className="text-4xl font-extrabold text-gray-900 text-center mb-12"
           initial="initial"
           animate="animate"
@@ -32,7 +32,7 @@ export const NewsPage = () => {
           viewport={{ once: false, amount: 0.15 }}
         >
           Our Latest News
-        </motion.h1>
+        </motion.h1> */}
         <News />
       </motion.div>
     </div>

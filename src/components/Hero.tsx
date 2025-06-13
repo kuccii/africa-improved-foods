@@ -77,7 +77,7 @@ const slides = [
     image: 'https://africaimprovedfoods.com/wp-content/uploads/2023/04/Our-Approach-Dropdown-menu.jpg',
     titleParts: [
       { text: 'Building a', animate: false },
-      { text: 'Better ', animate: true },
+      { text: 'Better ', animate: false },
       { text: 'Future for Africa', animate: false }
     ],
     subtitle:
@@ -87,7 +87,7 @@ const slides = [
     image: 'https://africaimprovedfoods.com/wp-content/uploads/2023/04/Local-Development-Dropdown-menu.jpg',
     titleParts: [
       { text: 'Empowering', animate: false },
-      { text: 'Farmers', animate: true }
+      { text: 'Farmers', animate: false }
     ],
     subtitle:
       'Partnering with 250+ cooperatives to strengthen Africa\'s agricultural backbone.',

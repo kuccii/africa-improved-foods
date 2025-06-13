@@ -3,8 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
+  animate: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.3, ease: "easeOut" } 
+  }
 };
 
 const executiveTeam = [
@@ -92,7 +95,7 @@ const TeamMemberModal: React.FC<TeamMemberModalProps> = ({ member, onClose }) =>
               alt={member.name}
               className="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-emerald-400 shadow-md"
             />
-            <h3 className="text-2xl font-bold gradient-text text-center mb-2">{member.name}</h3>
+            <h3 className="text-2xl font-bold text-gray-900 text-center mb-2">{member.name}</h3>
             <p className="text-emerald-700 text-md text-center mb-4">{member.title}</p>
             <p className="text-gray-700 text-base leading-relaxed">{member.bio}</p>
           </motion.div>
@@ -114,22 +117,24 @@ export const TeamPage = () => {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-teal-50 to-purple-50 text-gray-800 py-16">
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-green-50 to-orange-50 text-gray-800 py-16">
       {/* Background Blurs */}
       <div className="absolute w-96 h-96 bg-purple-200/30 rounded-full blur-3xl -top-20 -left-20 z-0" />
       <div className="absolute w-96 h-96 bg-teal-200/20 rounded-full blur-2xl -bottom-32 -right-32 z-0" />
 
       <motion.div
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        initial="initial"
+        animate="animate"
+        variants={fadeInUp}
+        viewport={{ once: false, amount: 0.15 }}
       >
         <motion.h1
-          className="text-4xl font-extrabold gradient-text text-center mb-12"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          className="text-4xl font-extrabold text-gray-900 text-center mb-12"
+          initial="initial"
+          animate="animate"
+          variants={fadeInUp}
+          viewport={{ once: false, amount: 0.15 }}
         >
           Meet Our Executive Team
         </motion.h1>
@@ -139,9 +144,10 @@ export const TeamPage = () => {
             <motion.div
               key={index}
               className="glass-card p-6 flex flex-col items-center text-center cursor-pointer transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              initial="initial"
+              animate="animate"
+              variants={fadeInUp}
+              viewport={{ once: false, amount: 0.15 }}
               onClick={() => openModal(member)}
             >
               <img
@@ -149,7 +155,7 @@ export const TeamPage = () => {
                 alt={member.name}
                 className="w-32 h-32 rounded-full object-cover mb-4 border-4 border-emerald-400 shadow-md"
               />
-              <h3 className="text-xl font-semibold gradient-text mb-1">{member.name}</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-1">{member.name}</h3>
               <p className="text-emerald-700 text-sm mb-4">{member.title}</p>
               <p className="text-gray-600 text-sm leading-relaxed line-clamp-4">{member.bio}</p>
               <button

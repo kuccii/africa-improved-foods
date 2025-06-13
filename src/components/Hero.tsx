@@ -74,7 +74,7 @@ const VideoModal: React.FC<VideoModalProps> = ({ videoId, onClose }) => {
 // Slide Data
 const slides = [
   {
-    image: 'https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    image: 'https://africaimprovedfoods.com/wp-content/uploads/2023/04/Our-Approach-Dropdown-menu.jpg',
     titleParts: [
       { text: 'Building a', animate: false },
       { text: 'Better ', animate: true },

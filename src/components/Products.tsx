@@ -1,185 +1,192 @@
 import { useState } from 'react';
-import { Users, Building } from 'lucide-react';
+import { Users, Building, Utensils, Sprout, Leaf, Heart } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-export const Products = () => {
-  const [activeCategory, setActiveCategory] = useState('institutional');
+interface ProductItem {
+  name: string;
+  desc: string;
+  img: string;
+  features: string[];
+}
 
-  const institutionalProducts = [
+interface ProductData {
+  institutional: ProductItem[];
+  consumer: ProductItem[];
+}
+
+const productData: ProductData = {
+  institutional: [
     {
       name: 'Super Cereal Plus',
-      description:
-        'A highly specialized cereal made from pre-cooked grains blended with skimmed milk powder, sugar, soy oil and micronutrients. Used to treat and prevent moderate acute malnutrition among young children aged 6+ months.',
-      image:
-        'https://africaimprovedfoods.com/wp-content/uploads/2023/06/Super_Cereal_Plus_packshot_facing.png',
-      features: ['Specialized cereal', 'Pre-cooked grains', 'Micronutrients', '6+ months'],
+      desc: 'Specialized cereal with grains, milk, and micronutrients for children 6+ months.',
+      img: 'https://africaimprovedfoods.com/wp-content/uploads/2023/06/Super_Cereal_Plus_packshot_facing.png',
+      features: ['Pre-cooked grains', 'Micronutrients', '6+ months'],
     },
     {
       name: 'Shisha Kibondo Infants',
-      description:
-        'A highly nutritious complementary porridge for infants and young children older than 6 months. A blend of maize, soya, milk powder, sugar, vitamins & minerals.',
-      image:
-        'https://africaimprovedfoods.com/wp-content/uploads/2023/06/Shisha_Kibondo_Infants_packshot_facing.png',
-      features: ['Complementary food', 'Maize & soya blend', 'Essential vitamins', 'Mineral fortified'],
+      desc: 'Nutritious maize-soya porridge for children 6+ months.',
+      img: 'https://africaimprovedfoods.com/wp-content/uploads/2023/06/Shisha_Kibondo_Infants_packshot_facing.png',
+      features: ['Maize & soya', 'Vitamins & minerals'],
     },
     {
       name: 'Shisha Kibondo Mothers',
-      description:
-        'A highly nutritious porridge for pregnant or breastfeeding women. Essential for good health of the mother and her unborn child. A blend of maize, soya, vitamins and minerals.',
-      image:
-        'https://africaimprovedfoods.com/wp-content/uploads/2023/06/Shisha_Kibondo_Mothers_packshot_facing.png',
-      features: ['Maternal nutrition', 'Pregnancy support', 'Natural ingredients', 'Vitamin enriched'],
+      desc: 'Fortified porridge for pregnant and breastfeeding women.',
+      img: 'https://africaimprovedfoods.com/wp-content/uploads/2023/06/Shisha_Kibondo_Mothers_packshot_facing.png',
+      features: ['Maternal nutrition', 'Vitamins', 'Minerals'],
     },
-  ];
-
-  const consumerProducts = [
+  ],
+  consumer: [
     {
       name: 'Nootri',
-      description:
-        'Specifically created to provide essential nutrients such as proteins, vitamins & minerals to support healthy body and mind development for strong growth of children.',
-      image:
-        'https://africaimprovedfoods.com/wp-content/uploads/2023/05/PACK-MOCKUP-NOOTRI-ALLFAMILY-50G.webp',
-      features: ['Essential nutrients', 'Child development', 'Natural grains', 'Aflatoxin free'],
+      desc: 'Nutritious cereals for child development and growth.',
+      img: 'https://africaimprovedfoods.com/wp-content/uploads/2023/05/PACK-MOCKUP-NOOTRI-ALLFAMILY-50G.webp',
+      features: ['Essential nutrients', 'Aflatoxin free'],
     },
     {
       name: 'Nootri Baby',
-      description:
-        'Instant infant cereals specifically created to provide essential nutrients to support healthy body and mind development for strong growth of children.',
-      image:
-        'https://murukali.com/cdn/shop/files/Nootri-Baby-murukali-com-9188_1197x1197.jpg?v=1710031030',
-      features: ['Instant cereals', 'Infant nutrition', 'Easy preparation', 'Growth support'],
+      desc: 'Instant infant cereals for healthy growth.',
+      img: 'https://murukali.com/cdn/shop/files/Nootri-Baby-murukali-com-9188_1197x1197.jpg?v=1710031030',
+      features: ['Instant cereals', 'Infant nutrition'],
     },
     {
       name: "Nootri All'Family",
-      description:
-        'Delicious and instant breakfast cereals to enjoy with your family every morning. A convenient way to contribute to the healthy growth of your children.',
-      image:
-        'https://africaimprovedfoods.com/wp-content/uploads/2023/05/PACK-MOCKUP-NOOTRI-ALLFAMILY-50G.webp',
-      features: ['Family breakfast', 'Instant preparation', 'Nutritious start', 'Delicious taste'],
+      desc: 'Instant breakfast cereals for the whole family.',
+      img: 'https://africaimprovedfoods.com/wp-content/uploads/2023/05/PACK-MOCKUP-NOOTRI-ALLFAMILY-50G.webp',
+      features: ['Family use', 'Nutritious & delicious'],
     },
-  ];
+  ],
+};
 
-  const products = activeCategory === 'institutional' ? institutionalProducts : consumerProducts;
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 20,
+      mass: 0.5
+    }
+  }
+};
+
+const staggerContainer = {
+  initial: { opacity: 0 },
+  animate: { 
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+      type: "spring",
+      stiffness: 100,
+      damping: 20
+    }
+  }
+};
+
+export const Products = () => {
+  const [category, setCategory] = useState<keyof ProductData>('institutional');
+  const products = productData[category];
 
   return (
-    <section
-      id="products"
-      className="relative py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden"
-    >
-      {/* Abstract Gradient Shapes */}
-      <div
-        aria-hidden="true"
-        className="absolute top-0 left-1/4 w-72 h-72 bg-gradient-to-tr from-emerald-500/30 via-emerald-300/20 to-transparent rounded-full blur-3xl animate-blob"
-        style={{ animationDuration: '7s', animationTimingFunction: 'ease-in-out' }}
-      />
-      <div
-        aria-hidden="true"
-        className="absolute top-1/2 right-1/4 w-96 h-96 bg-gradient-to-bl from-emerald-600/25 via-emerald-400/15 to-transparent rounded-full blur-3xl animate-blob animation-delay-2000"
-        style={{ animationDuration: '10s', animationTimingFunction: 'ease-in-out' }}
-      />
-      <div
-        aria-hidden="true"
-        className="absolute bottom-20 left-1/3 w-80 h-80 bg-gradient-to-tr from-emerald-700/20 via-emerald-500/10 to-transparent rounded-full blur-3xl animate-blob animation-delay-4000"
-        style={{ animationDuration: '8s', animationTimingFunction: 'ease-in-out' }}
-      />
+    <section id="products-section" className="py-24 bg-gradient-to-br from-orange-50 to-green-100 text-gray-800 relative overflow-hidden">
+      {/* Decorative Blur background */}
+      <div className="absolute inset-0 z-0 opacity-30">
+        <div className="absolute w-64 h-64 bg-orange-200 rounded-full blur-3xl top-10 left-1/4 animate-blob" />
+        <div className="absolute w-80 h-80 bg-green-200 rounded-full blur-3xl bottom-20 right-1/4 animate-blob animation-delay-2000" />
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight leading-tight">
-            Our Products
+      <motion.div 
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true, amount: 0.5 }}
+        variants={staggerContainer}
+      >
+        {/* Section Header */}
+        <motion.div 
+          className="text-center mb-20"
+          variants={fadeInUp}
+        >
+          <h2 className="text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+            Our Nutritious Products
           </h2>
-          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Nutritious, affordable, and accessible products made in Africa from cereals grown in Africa,
-            fortified with essential vitamins and macronutrients to tackle stunting on the continent.
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Providing high-quality, fortified foods for a healthier community.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Category Tabs */}
-        <div className="flex justify-center mb-12">
-          <div className="p-1 flex space-x-2 bg-gray-800 rounded-lg shadow-inner">
-            <button
-              onClick={() => setActiveCategory('institutional')}
-              className={`px-6 py-2 rounded-md font-medium transition-all duration-300 flex items-center space-x-2 ${
-                activeCategory === 'institutional'
-                  ? 'bg-emerald-600 text-white shadow-lg'
-                  : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-              }`}
-            >
-              <Building className="h-5 w-5" />
-              <span className="text-sm sm:text-base">Institutional</span>
-            </button>
-            <button
-              onClick={() => setActiveCategory('consumer')}
-              className={`px-6 py-2 rounded-md font-medium transition-all duration-300 flex items-center space-x-2 ${
-                activeCategory === 'consumer'
-                  ? 'bg-emerald-600 text-white shadow-lg'
-                  : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-              }`}
-            >
-              <Users className="h-5 w-5" />
-              <span className="text-sm sm:text-base">Consumer</span>
-            </button>
-          </div>
-        </div>
+        {/* Category Buttons */}
+        <motion.div 
+          className="mt-8 flex justify-center space-x-4 mb-16"
+          variants={fadeInUp}
+        >
+          <motion.button
+            onClick={() => setCategory('institutional')}
+            className={`px-6 py-3 rounded-full flex items-center gap-2 transition-all duration-300 font-semibold text-lg
+              ${category === 'institutional' ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-lg' : 'bg-white text-gray-700 border border-gray-300 hover:border-emerald-400 hover:text-emerald-600'}
+            `}
+            whileHover={{ 
+              scale: 1.02,
+              transition: { type: "spring", stiffness: 400, damping: 10 }
+            }}
+          >
+            <Building className="w-5 h-5" /> Institutional
+          </motion.button>
+          <motion.button
+            onClick={() => setCategory('consumer')}
+            className={`px-6 py-3 rounded-full flex items-center gap-2 transition-all duration-300 font-semibold text-lg
+              ${category === 'consumer' ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-lg' : 'bg-white text-gray-700 border border-gray-300 hover:border-emerald-400 hover:text-emerald-600'}
+            `}
+            whileHover={{ 
+              scale: 1.02,
+              transition: { type: "spring", stiffness: 400, damping: 10 }
+            }}
+          >
+            <Users className="w-5 h-5" /> Consumer
+          </motion.button>
+        </motion.div>
 
-        {/* Products Grid */}
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-          {products.map((product, idx) => (
-            <div
-              key={idx}
-              className="bg-gray-800/20 backdrop-blur-sm rounded-xl flex flex-col transition-transform duration-300 hover:scale-[1.05] shadow-md hover:shadow-lg"
+        {/* Product Grid */}
+        <motion.div 
+          className="grid gap-10 px-4 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto relative z-10"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: false, amount: 0.1 }}
+          variants={staggerContainer}
+        >
+          {products.map((p: ProductItem, i: number) => (
+            <motion.div
+              key={i}
+              className="glass-card p-8 rounded-3xl backdrop-filter backdrop-blur-lg border border-opacity-20 shadow-xl relative overflow-hidden transform hover:scale-[1.02] transition-all duration-300"
+              variants={fadeInUp}
+              whileHover={{
+                y: -5,
+                transition: { type: "spring", stiffness: 300, damping: 20 }
+              }}
             >
-              <div className="relative h-52 overflow-hidden rounded-t-3xl">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-t-3xl" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-emerald-400 mb-2 tracking-wide">
-                  {product.name}
-                </h3>
-                <p className="text-sm text-gray-300 mb-4 leading-relaxed">
-                  {product.description}
-                </p>
-                <ul className="text-sm text-emerald-300 space-y-1 list-disc list-inside">
-                  {product.features.map((feature, i) => (
-                    <li key={i}>{feature}</li>
+              {/* Background Gradient Circle */}
+              <div className="absolute -top-10 -right-10 w-24 h-24 bg-teal-400 opacity-20 rounded-full filter blur-xl" />
+              <div className="absolute -bottom-10 -left-10 w-24 h-24 bg-green-400 opacity-20 rounded-full filter blur-xl" />
+
+              <div className="relative z-10">
+                <img src={p.img} alt={p.name} className="h-56 w-full object-cover rounded-xl mb-6 shadow-md" />
+                <h3 className="text-3xl font-bold text-gray-900 mb-4 tracking-tight">{p.name}</h3>
+                <p className="text-gray-700 leading-relaxed mb-6">{p.desc}</p>
+                <ul className="space-y-3 mb-8">
+                  {p.features.map((f: string, j: number) => (
+                    <li key={j} className="flex items-center text-gray-700">
+                      <span className="inline-block w-2 h-2 rounded-full bg-green-500 mr-3" />
+                      {f}
+                    </li>
                   ))}
                 </ul>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
-
-      {/* Blob animations */}
-      <style>{`
-        @keyframes blob {
-          0%, 100% {
-            transform: translate(0px, 0px) scale(1);
-          }
-          33% {
-            transform: translate(20px, -30px) scale(1.05);
-          }
-          66% {
-            transform: translate(-20px, 20px) scale(0.95);
-          }
-        }
-        .animate-blob {
-          animation-name: blob;
-          animation-iteration-count: infinite;
-          animation-timing-function: ease-in-out;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-      `}</style>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

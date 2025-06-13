@@ -8,6 +8,7 @@ const navigation = [
   { name: 'About', href: '/about' },
   { name: 'Products', href: '/products' },
   { name: 'News', href: '/news' },
+  { name: 'Team', href: '/team' },
   { name: 'Contact', href: '/contact' },
 ];
 
@@ -35,9 +36,9 @@ export const Navigation = () => {
             <span className="sr-only">Open menu</span>
             <Bars3Icon className="h-6 w-6" />
           </button>
-        </div>
+          </div>
 
-        {/* Desktop Navigation */}
+          {/* Desktop Navigation */}
         <div className="hidden lg:flex lg:gap-x-10">
           {navigation.map((item) => (
             <Link
@@ -47,12 +48,12 @@ export const Navigation = () => {
                 location.pathname === item.href
                   ? 'text-green-600 after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:bg-green-500'
                   : 'text-gray-800 hover:text-green-600'
-              }`}
-            >
+                  }`}
+                >
               {item.name}
             </Link>
-          ))}
-        </div>
+              ))}
+            </div>
       </nav>
 
       {/* Mobile Navigation Dialog */}
@@ -71,7 +72,7 @@ export const Navigation = () => {
             >
               <XMarkIcon className="h-6 w-6" />
             </button>
-          </div>
+        </div>
 
           {/* Mobile Nav Links */}
           <div className="mt-6">
@@ -85,10 +86,10 @@ export const Navigation = () => {
                     ? 'text-green-600 bg-green-50'
                     : 'text-gray-800 hover:bg-gray-100 hover:text-green-600'
                 }`}
-              >
+                >
                 {item.name}
               </Link>
-            ))}
+              ))}
           </div>
         </Dialog.Panel>
       </Dialog>

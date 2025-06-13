@@ -1,6 +1,39 @@
 import { Target, Users, Globe, Lightbulb } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 20,
+      mass: 0.5
+    }
+  }
+};
+
+const staggerContainer = {
+  initial: { opacity: 0 },
+  animate: { 
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+      type: "spring",
+      stiffness: 100,
+      damping: 20
+    }
+  }
+};
 
 export const About = () => {
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
+  const y = useTransform(scrollYProgress, [0, 0.2], [20, 0]);
+
   const features = [
     {
       icon: Target,
@@ -46,9 +79,19 @@ export const About = () => {
         <rect width="200" height="200" fill="currentColor" rx="48" />
       </svg>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-20">
+      <motion.div
+        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-20"
+        style={{ opacity, y }}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: false, amount: 0.1 }}
+        variants={staggerContainer}
+      >
         {/* Section Heading */}
-        <header className="text-center mb-20 max-w-3xl mx-auto">
+        <motion.header 
+          className="text-center mb-20 max-w-3xl mx-auto"
+          variants={fadeInUp}
+        >
           <h2 className="text-5xl font-extrabold text-emerald-700 leading-tight mb-6">
             About Africa Improved Foods
           </h2>
@@ -56,16 +99,24 @@ export const About = () => {
             An African food champion focused on addressing hunger and malnutrition through sustainable food systems,
             sourcing from local farmers, and delivering nutritious, affordable products.
           </p>
-        </header>
+        </motion.header>
 
         {/* Feature Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-24">
+        <motion.div 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-24"
+          variants={staggerContainer}
+        >
           {features.map(({ icon: Icon, title, description }, index) => (
-            <article
+            <motion.article
               key={index}
               className="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-300 cursor-pointer"
               tabIndex={0}
               aria-labelledby={`feature-${index}`}
+              variants={fadeInUp}
+              whileHover={{ 
+                scale: 1.02,
+                transition: { type: "spring", stiffness: 400, damping: 10 }
+              }}
             >
               <div className="bg-emerald-100 p-4 rounded-xl mb-6 inline-flex items-center justify-center">
                 <Icon className="w-8 h-8 text-emerald-700" />
@@ -74,12 +125,19 @@ export const About = () => {
                 {title}
               </h3>
               <p className="text-gray-600 leading-relaxed">{description}</p>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
 
         {/* Vision & Image Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-50 to-white shadow-2xl">
+        <motion.div 
+          className="grid grid-cols-1 lg:grid-cols-2 overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-50 to-white shadow-2xl"
+          variants={fadeInUp}
+          whileHover={{ 
+            scale: 1.01,
+            transition: { type: "spring", stiffness: 300, damping: 20 }
+          }}
+        >
           <div className="p-10 sm:p-16 flex flex-col justify-center">
             <h3 className="text-4xl font-bold text-emerald-800 mb-6">Our Vision</h3>
             <p className="text-lg text-gray-700 leading-relaxed mb-8">
@@ -101,8 +159,51 @@ export const About = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-emerald-900/70 via-emerald-700/40 to-transparent" />
           </div>
-        </div>
-      </div>
+        </motion.div>
+
+        {/* Values Section */}
+        <motion.div 
+          className="mt-24"
+          variants={fadeInUp}
+        >
+          <h2 className="text-3xl font-bold text-emerald-800 text-center mb-12">Our Values</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <motion.div 
+              className="glass-card p-8 text-center"
+              variants={fadeInUp}
+              whileHover={{ 
+                scale: 1.02,
+                transition: { type: "spring", stiffness: 400, damping: 10 }
+              }}
+            >
+              <h3 className="text-xl font-semibold gradient-text mb-3">Sustainability</h3>
+              <p className="text-gray-600 leading-relaxed">Committed to environmentally responsible practices and long-term impact in all our operations.</p>
+            </motion.div>
+            <motion.div 
+              className="glass-card p-8 text-center"
+              variants={fadeInUp}
+              whileHover={{ 
+                scale: 1.02,
+                transition: { type: "spring", stiffness: 400, damping: 10 }
+              }}
+            >
+              <h3 className="text-xl font-semibold gradient-text mb-3">Innovation</h3>
+              <p className="text-gray-600 leading-relaxed">Continuously seeking new and effective solutions to address complex food security and agricultural challenges.</p>
+            </motion.div>
+            <motion.div 
+              className="glass-card p-8 text-center"
+              variants={fadeInUp}
+              whileHover={{ 
+                scale: 1.02,
+                transition: { type: "spring", stiffness: 400, damping: 10 }
+              }}
+            >
+              <h3 className="text-xl font-semibold gradient-text mb-3">Community</h3>
+              <p className="text-gray-600 leading-relaxed">Building strong partnerships and empowering local communities through inclusive growth and development.</p>
+            </motion.div>
+          </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

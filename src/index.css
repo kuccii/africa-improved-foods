@@ -8,7 +8,7 @@
   }
 
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Google Sans', sans-serif;
     line-height: 1.6;
     color: #333;
     overflow-x: hidden;
@@ -31,6 +31,7 @@
 
   .gradient-text {
     background: linear-gradient(45deg, #1a5220, #4caf50, #81c784);
+    /* background: linear-gradient(to right, #10B981, #F97316); */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -54,7 +55,7 @@
   }
 
   .glass-card {
-    background: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.4);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);

@@ -1,33 +1,66 @@
 import { Heart, Briefcase, Sprout, TrendingUp } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 20,
+      mass: 0.5
+    }
+  }
+};
+
+const staggerContainer = {
+  initial: { opacity: 0 },
+  animate: { 
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+      type: "spring",
+      stiffness: 100,
+      damping: 20
+    }
+  }
+};
 
 export const Impact = () => {
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
+  const y = useTransform(scrollYProgress, [0, 0.2], [20, 0]);
+
   const impactStats = [
     {
       icon: Heart,
-      title: 'Nutrition',
-      value: '1.6M+',
-      description: 'Nutritious meals delivered daily across Africa.',
+      title: 'Consumers & Beneficiaries',
+      value: '1.6M',
+      description: 'served per day.',
       color: 'bg-red-100 text-red-600',
     },
     {
-      icon: Briefcase,
-      title: 'Employment',
-      value: '500+',
-      description: 'Jobs created with mentorship, coaching, and training.',
-      color: 'bg-blue-100 text-blue-600',
-    },
-    {
       icon: Sprout,
-      title: 'Local Sourcing',
-      value: '250+',
-      description: 'Cooperatives empowered through farming assistance.',
+      title: 'Smallholder Farmers',
+      value: '90K',
+      description: 'impacted.',
       color: 'bg-green-100 text-green-600',
     },
     {
+      icon: Briefcase,
+      title: 'Staff Members',
+      value: '500+',
+      description: 'Total staff members.',
+      color: 'bg-blue-100 text-blue-600',
+    },
+    {
       icon: TrendingUp,
-      title: 'Investment',
-      value: '$65M',
-      description: 'Invested in Rwanda using cutting-edge technology.',
+      title: 'Net Incremental Value',
+      value: '$1B',
+      description: 'added in Africa within 1st 15 years.',
       color: 'bg-orange-100 text-orange-600',
     },
   ];
@@ -58,25 +91,43 @@ export const Impact = () => {
 
   return (
     <section id="impact-section" className="py-24 bg-white text-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.div 
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        style={{ opacity, y }}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: false, amount: 0.1 }}
+        variants={staggerContainer}
+      >
         {/* Section Header */}
-        <div className="text-center mb-20">
+        <motion.div 
+          className="text-center mb-20"
+          variants={fadeInUp}
+        >
           <h2 className="text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
             Our Impact
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Transforming lives through nutrition, local sourcing, and sustainable employment across East Africa.
           </p>
-        </div>
+        </motion.div>
 
         {/* Impact Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-24">
+        <motion.div 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-24"
+          variants={staggerContainer}
+        >
           {impactStats.map((stat, index) => {
             const Icon = stat.icon;
             return (
-              <div
+              <motion.div 
                 key={index}
                 className="bg-white shadow-xl rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-300"
+                variants={fadeInUp}
+                whileHover={{ 
+                  scale: 1.02,
+                  transition: { type: "spring", stiffness: 400, damping: 10 }
+                }}
               >
                 <div
                   className={`w-14 h-14 rounded-full ${stat.color} flex items-center justify-center mx-auto mb-5`}
@@ -86,35 +137,43 @@ export const Impact = () => {
                 <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
                 <h3 className="text-lg font-semibold text-gray-700 mb-2">{stat.title}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed">{stat.description}</p>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Initiatives */}
-        <div className="space-y-24">
+        <motion.div 
+          className="space-y-24"
+          variants={staggerContainer}
+        >
           {initiatives.map((initiative, index) => (
-            <div
+            <motion.div 
               key={index}
               className={`flex flex-col-reverse ${
                 index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
               } items-center gap-12`}
+              variants={fadeInUp}
+              whileHover={{ 
+                scale: 1.01,
+                transition: { type: "spring", stiffness: 300, damping: 20 }
+              }}
             >
               <div className="flex-1 bg-gray-50 rounded-2xl p-10 shadow-md">
                 <h3 className="text-3xl font-bold text-gray-900 mb-4">{initiative.title}</h3>
                 <p className="text-base text-gray-700 leading-relaxed">{initiative.description}</p>
               </div>
-
+              
               <div className="flex-1 w-full">
-                <div
+                <div 
                   className="h-80 w-full bg-cover bg-center rounded-2xl shadow-lg"
                   style={{ backgroundImage: `url(${initiative.image})` }}
                 ></div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

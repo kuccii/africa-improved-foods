@@ -1,12 +1,35 @@
+import { motion } from 'framer-motion';
 import { News } from '../components/News';
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 }
+};
 
 export const NewsPage = () => {
   return (
-    <div className="min-h-screen py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">Latest News</h1>
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-teal-50 to-purple-50 text-gray-800 py-16">
+      {/* Background Blurs */}
+      <div className="absolute w-96 h-96 bg-purple-200/30 rounded-full blur-3xl -top-20 -left-20 z-0" />
+      <div className="absolute w-96 h-96 bg-teal-200/20 rounded-full blur-2xl -bottom-32 -right-32 z-0" />
+
+      <motion.div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <motion.h1
+          className="text-4xl font-extrabold gradient-text text-center mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Our Latest News
+        </motion.h1>
         <News />
-      </div>
+      </motion.div>
     </div>
   );
 }; 

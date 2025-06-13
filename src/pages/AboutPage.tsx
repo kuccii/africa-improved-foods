@@ -58,23 +58,6 @@ export const AboutPage = () => {
       <div className="absolute w-96 h-96 bg-yellow-200/20 rounded-full blur-2xl -bottom-32 -right-32 z-0" />
       <div className="absolute w-48 h-48 bg-pink-300/20 rotate-45 blur-2xl top-1/3 right-1/4 z-0" />
 
-      {/* Title */}
-      <motion.div
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-8"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <motion.h1
-          className="text-4xl font-bold gradient-text text-center"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          About Us
-        </motion.h1>
-      </motion.div>
-
       {/* Full Width About */}
       <motion.div
         className="relative z-10 w-full"
@@ -95,18 +78,6 @@ export const AboutPage = () => {
         animate="animate"
       >
         <motion.div className="space-y-16">
-          {/* Mission */}
-          <motion.div variants={fadeInUp}>
-            <div className="gradient-section p-8">
-              <h2 className="text-2xl font-semibold gradient-text mb-4">Our Mission</h2>
-              <p className="text-gray-600 leading-relaxed">
-                We are dedicated to transforming lives through sustainable agriculture and food security initiatives.
-                Our mission is to empower communities and create lasting positive impact through innovative solutions
-                and partnerships.
-              </p>
-            </div>
-          </motion.div>
-
           {/* Timeline */}
           <motion.div variants={fadeInUp}>
             <div className="gradient-section p-8">
@@ -164,34 +135,6 @@ export const AboutPage = () => {
         <div className="glass-card p-8 w-full">
           <Partnership />
         </div>
-      </motion.div>
-
-      {/* Values */}
-      <motion.div
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-16"
-        variants={staggerContainer}
-        initial="initial"
-        animate="animate"
-      >
-        <motion.div variants={fadeInUp}>
-          <div className="gradient-section p-8">
-            <h2 className="text-2xl font-semibold gradient-text mb-4">Our Values</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="glass-card p-6">
-                <h3 className="text-lg font-semibold gradient-text mb-2">Sustainability</h3>
-                <p className="text-gray-600">Committed to environmentally responsible practices and long-term impact.</p>
-              </div>
-              <div className="glass-card p-6">
-                <h3 className="text-lg font-semibold gradient-text mb-2">Innovation</h3>
-                <p className="text-gray-600">Continuously seeking new solutions to address complex challenges.</p>
-              </div>
-              <div className="glass-card p-6">
-                <h3 className="text-lg font-semibold gradient-text mb-2">Community</h3>
-                <p className="text-gray-600">Building strong partnerships and empowering local communities.</p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </motion.div>
     </div>
   );

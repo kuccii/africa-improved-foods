@@ -8,6 +8,7 @@ export const Footer = () => {
     { name: 'Products', href: '#products' },
     { name: 'Impact', href: '#impact' },
     { name: 'Partnership', href: '#partnership' },
+    { name: 'Team', href: '/team' },
   ];
 
   const resources = [

@@ -56,11 +56,11 @@ const locations = [
 
 export const ContactPage = () => {
   return (
-    <div className="min-h-screen pt-0 mt-0 pb-16 relative scroll-m-0 first:mt-0">
+    <div className="min-h-screen pt-16 pb-16 relative scroll-m-0 first:mt-0 bg-gradient-to-br from-teal-50 to-purple-50">
       {/* Decorative elements */}
-      <div className="decorative-circle w-80 h-80 -top-40 -right-40 absolute z-0" />
-      <div className="decorative-circle w-64 h-64 -bottom-32 left-1/4 absolute z-0" />
-      <div className="decorative-square w-48 h-48 top-1/3 -left-24 rotate-45 absolute z-0" />
+      <div className="decorative-circle w-80 h-80 -top-40 -right-40 absolute z-0 bg-purple-200/30 rounded-full blur-3xl" />
+      <div className="decorative-circle w-64 h-64 -bottom-32 left-1/4 absolute z-0 bg-teal-200/20 rounded-full blur-2xl" />
+      <div className="decorative-square w-48 h-48 top-1/3 -left-24 rotate-45 absolute z-0 bg-purple-200/30 rounded-full blur-3xl" />
 
       <motion.div
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-0 mt-0"
@@ -69,7 +69,7 @@ export const ContactPage = () => {
         transition={{ duration: 0.5 }}
       >
         <motion.h1
-          className="text-4xl font-bold gradient-text mb-8 mt-0 pt-0"
+          className="text-4xl md:text-5xl font-extrabold text-green-800 mb-10 mt-0 pt-0 drop-shadow-lg tracking-tight text-center"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}

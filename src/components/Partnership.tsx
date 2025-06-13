@@ -1,141 +1,122 @@
 import { Handshake, Building2, Globe, Award } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 20,
+      mass: 0.5
+    }
+  }
+};
+
+const staggerContainer = {
+  initial: { opacity: 0 },
+  animate: { 
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+      type: "spring",
+      stiffness: 100,
+      damping: 20
+    }
+  }
+};
+
+const data = {
+  benefits: [
+    { icon: Handshake, title: 'Public‑Private Partnership', desc: 'Combining public and private strengths for high impact.' },
+    { icon: Building2, title: 'Modern Technology', desc: 'High-end manufacturing since 2016.' },
+    { icon: Globe, title: 'Regional Insight', desc: 'Deep understanding of East African markets.' },
+    { icon: Award, title: 'Proven Impact', desc: 'Measured and sustainable outcomes delivered.' },
+  ],
+  partners: [
+    { name: 'DSM', logo: 'https://panaceutics.com/wp-content/uploads/2020/11/logo-dsm.svg' },
+    { name: 'IFC', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMWTTJVY33LpzRl5QMPAHJUCf19RRfxoLM-q8H6xiwQou3t8cN9snMyIwOY6jS0phUt_c&usqp=CAU' }, // Replaced with a more generic placeholder, ensure actual logo is used
+    { name: 'FMO', logo: 'https://www.fmo.nl/l/library/download/urn:uuid:605749ef-5bdd-414b-97cd-6e435ef1420b/fmo+rainbow+logo.png?scaleType=1&width=194' },
+    { name: 'Govt. of Rwanda', logo: 'https://www.gov.rw/index.php?eID=dumpFile&t=f&f=1686&token=bbbb57e8d97711973cf02637df254ced6259f00f' },
+  ],
+};
 
 export const Partnership = () => {
-  const partners = [
-    {
-      name: 'DSM',
-      description: 'Global science-based company focused on nutrition, health and sustainable living',
-      logo: 'https://panaceutics.com/wp-content/uploads/2020/11/logo-dsm.svg',
-    },
-    {
-      name: 'IFC',
-      description: 'International Finance Corporation - World Bank Group member',
-      logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMWTTJVY33LpzRl5QMPAHJUCf19RRfxoLM-q8H6xiwQou3t8cN9snMyIwOY6jS0phUt_c&usqp=CAU',
-    },
-    {
-      name: 'FMO',
-      description: 'Dutch development bank supporting sustainable private sector growth',
-      logo: 'https://www.fmo.nl/l/library/download/urn:uuid:605749ef-5bdd-414b-97cd-6e435ef1420b/fmo+rainbow+logo.png?scaleType=1&width=194',
-    },
-    {
-      name: 'Government of Rwanda',
-      description: 'Strategic partnership supporting national development goals',
-      logo: 'https://www.gov.rw/index.php?eID=dumpFile&t=f&f=1686&token=bbbb57e8d97711973cf02637df254ced6259f00f',
-    },
-  ];
-
-  const benefits = [
-    {
-      icon: Handshake,
-      title: 'Public-Private Partnership',
-      description: 'Leveraging the strengths of both public and private sectors for maximum impact.',
-    },
-    {
-      icon: Building2,
-      title: 'Best-in-Class Technology',
-      description: 'State-of-the-art manufacturing facilities operational since December 2016.',
-    },
-    {
-      icon: Globe,
-      title: 'Regional Expertise',
-      description: 'Deep understanding of East African markets and agricultural systems.',
-    },
-    {
-      icon: Award,
-      title: 'Proven Results',
-      description: 'Track record of delivering sustainable solutions and measurable impact.',
-    },
-  ];
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
+  const y = useTransform(scrollYProgress, [0, 0.2], [20, 0]);
 
   return (
-    <section
-      id="partnership"
-      className="relative py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden"
-    >
-      {/* Blurred Background Gradients */}
-      <div
-        aria-hidden
-        className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-to-tr from-emerald-500 via-green-400 to-emerald-600 opacity-20 pointer-events-none"
-        style={{ filter: 'blur(120px)' }}
-      />
-      <div
-        aria-hidden
-        className="absolute bottom-20 right-10 w-[600px] h-[600px] rounded-full bg-gradient-to-bl from-green-600 via-emerald-400 to-green-500 opacity-15 pointer-events-none"
-        style={{ filter: 'blur(100px)' }}
-      />
-      <div
-        aria-hidden
-        className="absolute top-1/3 left-10 w-[400px] h-[400px] rounded-full bg-gradient-to-r from-green-300 via-emerald-200 to-green-300 opacity-10 pointer-events-none"
-        style={{ filter: 'blur(80px)' }}
-      />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="partnership-section" className="py-24 bg-gray-50">
+      <motion.div 
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        style={{ opacity, y }}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: false, amount: 0.1 }}
+        variants={staggerContainer}
+      >
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-extrabold mb-6 bg-gradient-to-r from-emerald-400 via-green-500 to-emerald-600 bg-clip-text text-transparent">
-            Our Partnership
+        <motion.div 
+          className="text-center mb-20"
+          variants={fadeInUp}
+        >
+          <h2 className="text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+            Strategic Alliances
           </h2>
-          <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Africa Improved Foods (AIF) is a public-private partnership involving DSM, IFC, FMO, and the Government of Rwanda—combining expertise and resources for maximum impact.
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Building strong partnerships to create sustainable impact across East Africa.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Benefits */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-20">
-          {benefits.map(({ icon: Icon, title, description }, i) => (
-            <article
-              key={i}
-              className="bg-gray-800/20 backdrop-blur-sm rounded-xl p-8 flex flex-col items-center text-center transition-transform duration-300 hover:scale-[1.05] shadow-md hover:shadow-lg"
-              aria-label={title}
+        {/* Partner Logos */}
+        <motion.div 
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+          variants={staggerContainer}
+        >
+          {data.partners.map((partner, index) => (
+            <motion.div
+              key={index}
+              className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
+              variants={fadeInUp}
+              whileHover={{ 
+                scale: 1.02,
+                transition: { type: "spring", stiffness: 400, damping: 10 }
+              }}
             >
-              <div className="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mb-5 transition-colors duration-300">
-                <Icon className="h-9 w-9 text-emerald-600" />
-              </div>
-              <h3 className="text-lg font-semibold mb-3 bg-gradient-to-r from-emerald-400 via-green-500 to-emerald-600 bg-clip-text text-transparent">
-                {title}
-              </h3>
-              <p className="text-gray-300 text-sm leading-relaxed">{description}</p>
-            </article>
+              <img
+                src={partner.logo}
+                alt={partner.name}
+                className="h-12 w-auto mx-auto object-contain"
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Partners Grid */}
-        <div className="bg-gray-800/20 backdrop-blur-sm rounded-3xl p-14 shadow-md">
-          <h3 className="text-3xl font-extrabold text-center mb-14 bg-gradient-to-r from-emerald-400 via-green-500 to-emerald-600 bg-clip-text text-transparent">
-            Our Strategic Partners
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-            {partners.map(({ name, description, logo }, i) => (
-              <article
-                key={i}
-                className="bg-gray-900/10 backdrop-blur-sm rounded-xl p-8 flex flex-col items-center text-center transition-shadow duration-300 hover:shadow-emerald-400/30"
-                aria-label={`Partner: ${name}`}
-              >
-                <div
-                  className="w-24 h-24 mb-6 rounded-full bg-cover bg-center shadow-inner"
-                  style={{ backgroundImage: `url(${logo})` }}
-                  role="img"
-                  aria-label={`${name} logo`}
-                />
-                <h4 className="text-xl font-semibold mb-3 bg-gradient-to-r from-emerald-400 via-green-500 to-emerald-600 bg-clip-text text-transparent">
-                  {name}
-                </h4>
-                <p className="text-gray-300 text-sm leading-relaxed">{description}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-
-        {/* Investment Highlight */}
-        <div className="mt-24 bg-gray-800/20 backdrop-blur-sm rounded-3xl p-14 text-center shadow-md max-w-4xl mx-auto">
-          <h3 className="text-4xl font-extrabold mb-6 bg-gradient-to-r from-emerald-400 via-green-500 to-emerald-600 bg-clip-text text-transparent">
-            $65 Million Investment
-          </h3>
-          <p className="text-xl text-gray-300 leading-relaxed">
-            Significant investment in Rwanda with best-in-class technology, demonstrating our commitment to building sustainable food systems across Africa.
-          </p>
-        </div>
-      </div>
+        {/* Partnership Benefits */}
+        <motion.div 
+          className="mt-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={staggerContainer}
+        >
+          {data.benefits.map((benefit, index) => (
+            <motion.div
+              key={index}
+              className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
+              variants={fadeInUp}
+              whileHover={{ 
+                scale: 1.02,
+                transition: { type: "spring", stiffness: 400, damping: 10 }
+              }}
+            >
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{benefit.title}</h3>
+              <p className="text-gray-600">{benefit.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

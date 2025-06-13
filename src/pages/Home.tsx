@@ -15,7 +15,7 @@ export const Home = () => {
       <Products />
       <Impact />
       <Partnership />
-      <News />
+      <News limit={3} />
       <Contact />
     </div>
   );

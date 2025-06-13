@@ -7,6 +7,7 @@ import { AboutPage } from './pages/AboutPage';
 import { ProductsPage } from './pages/ProductsPage';
 import { NewsPage } from './pages/NewsPage';
 import { ContactPage } from './pages/ContactPage';
+import { TeamPage } from './pages/TeamPage';
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -43,6 +44,7 @@ function App() {
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/team" element={<TeamPage />} />
           </Routes>
         </main>
         <Footer />

@@ -2,38 +2,37 @@ import { ArrowRight, Play } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-interface VideoModalProps {
-  videoId: string | null;
-  onClose: () => void;
-}
-
+// Modal Animation
 const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { 
-    opacity: 1, 
+  initial: { opacity: 0, y: 30, scale: 0.98 },
+  animate: {
+    opacity: 1,
     y: 0,
+    scale: 1,
     transition: {
-      type: "spring",
-      stiffness: 100,
+      type: 'spring',
+      stiffness: 80,
       damping: 20,
-      mass: 0.5
-    }
-  }
+    },
+  },
 };
 
 const staggerContainer = {
   initial: { opacity: 0 },
-  animate: { 
+  animate: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
-      type: "spring",
-      stiffness: 100,
-      damping: 20
-    }
-  }
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
 };
+
+// Modal Component
+interface VideoModalProps {
+  videoId: string | null;
+  onClose: () => void;
+}
 
 const VideoModal: React.FC<VideoModalProps> = ({ videoId, onClose }) => {
   if (!videoId) return null;
@@ -41,13 +40,21 @@ const VideoModal: React.FC<VideoModalProps> = ({ videoId, onClose }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div
-        className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm"
+        className="fixed inset-0 bg-black/80 backdrop-blur-sm"
         onClick={onClose}
-      ></div>
-      <div className="relative bg-white rounded-lg shadow-2xl overflow-hidden max-w-4xl w-full mx-auto z-10 aspect-video">
+        aria-label="Close video modal"
+      />
+      <motion.div
+        className="relative bg-black rounded-xl overflow-hidden shadow-2xl aspect-video w-full max-w-5xl z-10"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 50 }}
+        transition={{ duration: 0.4 }}
+      >
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-white text-3xl font-bold z-20 hover:text-gray-300 transition-colors"
+          className="absolute top-4 right-4 text-white text-2xl hover:text-gray-300 z-20"
+          aria-label="Close"
         >
           &times;
         </button>
@@ -55,123 +62,126 @@ const VideoModal: React.FC<VideoModalProps> = ({ videoId, onClose }) => {
           className="w-full h-full"
           src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
           frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-          title="YouTube video player"
-        ></iframe>
-      </div>
+          title="Company story video"
+        />
+      </motion.div>
     </div>
   );
 };
 
+// Slide Data
 const slides = [
   {
     image: 'https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    title: 'Building a Better Future for Africa',
+    titleParts: [
+      { text: 'Building a', animate: false },
+      { text: 'Better ', animate: true },
+      { text: 'Future for Africa', animate: false }
+    ],
     subtitle:
-      `Addressing hunger and malnutrition through resilient food systems and accessible nutrition.`,
+      'Addressing hunger and malnutrition through resilient food systems and accessible nutrition.',
   },
   {
     image: 'https://africaimprovedfoods.com/wp-content/uploads/2023/04/Local-Development-Dropdown-menu.jpg',
-    title: 'Empowering Farmers',
+    titleParts: [
+      { text: 'Empowering', animate: false },
+      { text: 'Farmers', animate: true }
+    ],
     subtitle:
-      `Partnering with 250+ cooperatives to strengthen Africa's agricultural backbone.`,
+      'Partnering with 250+ cooperatives to strengthen Africa\'s agricultural backbone.',
   },
   {
     image: 'https://africaimprovedfoods.com/wp-content/uploads/2023/04/Our-Solutions-1.png',
-    title: 'Investing in Growth',
+    titleParts: [
+      { text: 'Investing in', animate: false },
+      { text: 'Growth', animate: false }
+    ],
     subtitle:
-      `Over $65M invested in nutrition and agriculture to power Rwanda's future.`,
+      'Over $65M invested in nutrition and agriculture to power Rwanda\'s future.',
   },
 ];
 
+// Hero Component
 export const Hero: React.FC = () => {
-  const [current, setCurrent] = useState(0);
-  const [showVideoModal, setShowVideoModal] = useState(false);
-  const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [videoId, setVideoId] = useState<string | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % slides.length);
-    }, 6000);
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 7000);
     return () => clearInterval(interval);
   }, []);
 
-  const openVideoModal = (videoId: string) => {
-    setSelectedVideoId(videoId);
-    setShowVideoModal(true);
-  };
-
-  const closeVideoModal = () => {
-    setShowVideoModal(false);
-    setSelectedVideoId(null);
-  };
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">
-      {/* Slide Image */}
+    <section className="relative min-h-screen flex items-center justify-center bg-black text-white overflow-hidden">
+      {/* Background Slide */}
       <AnimatePresence initial={false}>
         <motion.div
-          key={current}
+          key={currentSlide}
           className="absolute inset-0 bg-cover bg-center"
-          initial={{ opacity: 0, scale: 1.05 }}
+          style={{ backgroundImage: `url(${slides[currentSlide].image})` }}
+          initial={{ opacity: 0, scale: 1.08 }}
           animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.05 }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
-          style={{
-            backgroundImage: `url(${slides[current].image})`,
-          }}
+          exit={{ opacity: 0, scale: 1.08 }}
+          transition={{ duration: 1, ease: 'easeInOut' }}
         >
-          <div className="absolute inset-0 bg-black/70" />
+          <div className="absolute inset-0 bg-black/85" />
         </motion.div>
       </AnimatePresence>
 
-      {/* Slide Content */}
-      <motion.div 
-        className="relative z-10 max-w-5xl text-center px-6 text-white"
+      {/* Text Content */}
+      <motion.div
+        className="relative z-10 px-6 max-w-4xl text-center"
+        variants={staggerContainer}
         initial="initial"
         animate="animate"
-        variants={staggerContainer}
       >
-        <motion.h1 
-          className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6"
+        <motion.h1
+          className="text-5xl sm:text-6xl md:text-7xl font-extrabold leading-tight mb-6 text-shadow-lg"
           variants={fadeInUp}
         >
-          {slides[current].title}
+          {slides[currentSlide].titleParts.map((part, index) => (
+            <span key={index} className={part.animate ? "gradient-hero-text animate-gradient" : ""}>
+              {part.text}{index < slides[currentSlide].titleParts.length - 1 ? ' ' : ''}
+            </span>
+          ))}
         </motion.h1>
-        <motion.p 
-          className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-12"
+        <motion.p
+          className="text-lg sm:text-xl md:text-2xl text-gray-200 mb-10 text-shadow-md"
           variants={fadeInUp}
         >
-          {slides[current].subtitle}
+          {slides[currentSlide].subtitle}
         </motion.p>
 
-        {/* CTA Buttons */}
-        <motion.div 
+        {/* Call to Action */}
+        <motion.div
           className="flex flex-col sm:flex-row justify-center gap-6"
           variants={fadeInUp}
         >
           <button
-            onClick={() => {
-              const impactSection = document.getElementById('impact-section');
-              if (impactSection) {
-                impactSection.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-semibold flex items-center gap-2 transition-all"
+            onClick={() =>
+              document.getElementById('impact-section')?.scrollIntoView({ behavior: 'smooth' })
+            }
+            className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-semibold flex items-center gap-2 transition-all shadow-lg hover:shadow-xl"
           >
             Learn About Our Impact <ArrowRight size={20} />
           </button>
           <button
-            className="border-2 border-white hover:bg-white hover:text-black text-white px-8 py-4 rounded-full font-semibold flex items-center gap-2 transition-all"
-            onClick={() => openVideoModal('tSklYGnjQhI')}
+            onClick={() => setVideoId('tSklYGnjQhI')}
+            className="border-2 border-white hover:bg-white hover:text-black text-white px-8 py-4 rounded-full font-semibold flex items-center gap-2 transition-all shadow-lg hover:shadow-xl"
           >
-            <Play size={20} />
-            Watch Our Story
+            <Play size={20} /> Watch Our Story
           </button>
         </motion.div>
       </motion.div>
-      <VideoModal videoId={selectedVideoId} onClose={closeVideoModal} />
+
+      {/* Video Modal */}
+      <AnimatePresence>
+        {videoId && <VideoModal videoId={videoId} onClose={() => setVideoId(null)} />}
+      </AnimatePresence>
     </section>
   );
 };

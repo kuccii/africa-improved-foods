@@ -33,7 +33,7 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="py-16 bg-[#111827] text-white">
+    <footer className="py-16 bg-gradient-to-br from-gray-900 to-black text-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info */}
@@ -70,13 +70,13 @@ export const Footer = () => {
 
           {/* Quick Links */}
           <div className="p-6 rounded-lg">
-            <h3 className="text-lg font-semibold mb-6 text-green-300">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-6 text-orange-400">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
                   <a 
                     href={link.href}
-                    className="text-gray-300 hover:text-green-400 transition-colors duration-300"
+                    className="text-gray-300 hover:text-orange-300 transition-colors duration-300"
                   >
                     {link.name}
                   </a>
@@ -87,13 +87,13 @@ export const Footer = () => {
 
           {/* Resources */}
           <div className="p-6 rounded-lg">
-            <h3 className="text-lg font-semibold mb-6 text-green-300">Resources</h3>
+            <h3 className="text-lg font-semibold mb-6 text-orange-400">Resources</h3>
             <ul className="space-y-3">
               {resources.map((link, index) => (
                 <li key={index}>
                   <a 
                     href={link.href}
-                    className="text-gray-300 hover:text-green-400 transition-colors duration-300"
+                    className="text-gray-300 hover:text-orange-300 transition-colors duration-300"
                   >
                     {link.name}
                   </a>
@@ -104,13 +104,13 @@ export const Footer = () => {
 
           {/* Legal */}
           <div className="p-6 rounded-lg">
-            <h3 className="text-lg font-semibold mb-6 text-green-300">Legal</h3>
+            <h3 className="text-lg font-semibold mb-6 text-orange-400">Legal</h3>
             <ul className="space-y-3">
               {legal.map((link, index) => (
                 <li key={index}>
                   <a 
                     href={link.href}
-                    className="text-gray-300 hover:text-green-400 transition-colors duration-300"
+                    className="text-gray-300 hover:text-orange-300 transition-colors duration-300"
                   >
                     {link.name}
                   </a>
@@ -134,7 +134,7 @@ export const Footer = () => {
                   key={index}
                   href={social.href}
                   aria-label={social.label}
-                  className="p-2 rounded-lg transition-all duration-300 transform hover:scale-110 hover:text-green-400"
+                  className="p-2 rounded-lg transition-all duration-300 transform hover:scale-110 hover:text-orange-400"
                 >
                   <Icon className="h-5 w-5 text-green-400" />
                 </a>

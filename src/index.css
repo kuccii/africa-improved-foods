@@ -31,7 +31,6 @@
 
   .gradient-text {
     background: linear-gradient(45deg, #1a5220, #4caf50, #81c784);
-    /* background: linear-gradient(to right, #10B981, #F97316); */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -87,5 +86,32 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 2rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .gradient-text-about {
+    background: linear-gradient(45deg, #10B981, #F97316);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .gradient-hero-text {
+    background: linear-gradient(90deg, #F97316, #10B981, #F97316);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  @keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .animate-gradient {
+    animation: gradient-animation 4s ease infinite;
   }
 }

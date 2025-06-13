@@ -1,5 +1,5 @@
 import { Target, Users, Globe, Lightbulb } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -7,33 +7,13 @@ const fadeInUp = {
     opacity: 1, 
     y: 0,
     transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 20,
-      mass: 0.5
-    }
-  }
-};
-
-const staggerContainer = {
-  initial: { opacity: 0 },
-  animate: { 
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1,
-      type: "spring",
-      stiffness: 100,
-      damping: 20
+      duration: 0.3,
+      ease: "easeOut"
     }
   }
 };
 
 export const About = () => {
-  const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
-  const y = useTransform(scrollYProgress, [0, 0.2], [20, 0]);
-
   const features = [
     {
       icon: Target,
@@ -61,38 +41,41 @@ export const About = () => {
     },
   ];
 
+  const values = [
+    {
+      title: 'Sustainability',
+      description: 'Committed to environmentally responsible practices and long-term impact in all our operations.',
+    },
+    {
+      title: 'Innovation',
+      description: 'Continuously seeking new and effective solutions to address complex food security and agricultural challenges.',
+    },
+    {
+      title: 'Community',
+      description: 'Building strong partnerships and empowering local communities through inclusive growth and development.',
+    },
+  ];
+
   return (
-    <section id="about" className="relative bg-white py-24">
+    <section id="about" className="relative bg-gradient-to-br from-green-50 to-orange-50 py-24 overflow-hidden">
       {/* Decorative Background Shapes */}
-      <svg
-        className="absolute top-10 left-10 w-40 h-40 text-emerald-100 opacity-40"
-        viewBox="0 0 200 200"
-        aria-hidden="true"
-      >
-        <circle cx="100" cy="100" r="100" fill="currentColor" />
-      </svg>
-      <svg
-        className="absolute bottom-20 right-10 w-56 h-56 text-emerald-200 opacity-30"
-        viewBox="0 0 200 200"
-        aria-hidden="true"
-      >
-        <rect width="200" height="200" fill="currentColor" rx="48" />
-      </svg>
+      <div className="absolute top-0 left-0 w-80 h-80 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" />
+      <div className="absolute top-0 right-0 w-80 h-80 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000" />
+      <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-teal-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000" />
 
       <motion.div
-        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-20"
-        style={{ opacity, y }}
+        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 bg-white/30 backdrop-blur-lg rounded-3xl shadow-xl p-8 md:p-12 border border-white border-opacity-30"
         initial="initial"
         whileInView="animate"
-        viewport={{ once: false, amount: 0.1 }}
-        variants={staggerContainer}
+        viewport={{ once: false, amount: 0.05 }}
+        variants={fadeInUp}
       >
         {/* Section Heading */}
         <motion.header 
-          className="text-center mb-20 max-w-3xl mx-auto"
+          className="text-center mb-20 max-w-4xl mx-auto"
           variants={fadeInUp}
         >
-          <h2 className="text-5xl font-extrabold text-emerald-700 leading-tight mb-6">
+          <h2 className="text-6xl font-extrabold text-gray-900 leading-tight mb-6">
             About Africa Improved Foods
           </h2>
           <p className="text-lg text-gray-700 leading-relaxed">
@@ -104,47 +87,49 @@ export const About = () => {
         {/* Feature Cards Grid */}
         <motion.div 
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-24"
-          variants={staggerContainer}
+          variants={fadeInUp}
+          viewport={{ once: false, amount: 0.3 }}
         >
           {features.map(({ icon: Icon, title, description }, index) => (
             <motion.article
               key={index}
-              className="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-300 cursor-pointer"
+              className="glass-card-about p-8 rounded-3xl shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-300 cursor-pointer border border-white border-opacity-20"
               tabIndex={0}
               aria-labelledby={`feature-${index}`}
               variants={fadeInUp}
               whileHover={{ 
-                scale: 1.02,
-                transition: { type: "spring", stiffness: 400, damping: 10 }
+                y: -5,
+                transition: { duration: 0.2, ease: "easeOut" }
               }}
             >
-              <div className="bg-emerald-100 p-4 rounded-xl mb-6 inline-flex items-center justify-center">
-                <Icon className="w-8 h-8 text-emerald-700" />
+              <div className="bg-gradient-to-br from-emerald-400 to-green-600 p-4 rounded-xl mb-6 inline-flex items-center justify-center shadow-md">
+                <Icon className="w-8 h-8 text-white" />
               </div>
-              <h3 id={`feature-${index}`} className="text-xl font-semibold text-emerald-800 mb-3">
+              <h3 id={`feature-${index}`} className="text-xl font-semibold text-gray-900 mb-3">
                 {title}
               </h3>
-              <p className="text-gray-600 leading-relaxed">{description}</p>
+              <p className="text-gray-700 leading-relaxed text-sm">{description}</p>
             </motion.article>
           ))}
         </motion.div>
 
         {/* Vision & Image Section */}
         <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-2 overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-50 to-white shadow-2xl"
+          className="grid grid-cols-1 lg:grid-cols-2 overflow-hidden rounded-3xl bg-white/50 shadow-2xl border border-white border-opacity-30"
           variants={fadeInUp}
+          viewport={{ once: false, amount: 0.3 }}
           whileHover={{ 
             scale: 1.01,
-            transition: { type: "spring", stiffness: 300, damping: 20 }
+            transition: { duration: 0.2, ease: "easeOut" }
           }}
         >
           <div className="p-10 sm:p-16 flex flex-col justify-center">
-            <h3 className="text-4xl font-bold text-emerald-800 mb-6">Our Vision</h3>
+            <h3 className="text-4xl font-bold text-gray-900 mb-6">Our Vision</h3>
             <p className="text-lg text-gray-700 leading-relaxed mb-8">
               We aim to be an impact-driven African food champion. By building sustainable, resilient food systems,
               we provide affordable, nutritious, and accessible products to improve food security and livelihoods.
             </p>
-            <h4 className="text-2xl font-semibold text-emerald-700 mb-4">Our Approach</h4>
+            <h4 className="text-2xl font-semibold text-gray-800 mb-4">Our Approach</h4>
             <p className="text-gray-700 leading-relaxed">
               Our strategy centers around long-term sustainability by investing in key capabilities and
               empowering smallholder farmers through inclusive value chains, innovation, and local production.
@@ -157,7 +142,7 @@ export const About = () => {
               className="object-cover w-full h-full"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-emerald-900/70 via-emerald-700/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-green-900/70 via-green-700/40 to-transparent" />
           </div>
         </motion.div>
 
@@ -165,42 +150,26 @@ export const About = () => {
         <motion.div 
           className="mt-24"
           variants={fadeInUp}
+          viewport={{ once: false, amount: 0.3 }}
         >
-          <h2 className="text-3xl font-bold text-emerald-800 text-center mb-12">Our Values</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div 
-              className="glass-card p-8 text-center"
-              variants={fadeInUp}
-              whileHover={{ 
-                scale: 1.02,
-                transition: { type: "spring", stiffness: 400, damping: 10 }
-              }}
-            >
-              <h3 className="text-xl font-semibold gradient-text mb-3">Sustainability</h3>
-              <p className="text-gray-600 leading-relaxed">Committed to environmentally responsible practices and long-term impact in all our operations.</p>
-            </motion.div>
-            <motion.div 
-              className="glass-card p-8 text-center"
-              variants={fadeInUp}
-              whileHover={{ 
-                scale: 1.02,
-                transition: { type: "spring", stiffness: 400, damping: 10 }
-              }}
-            >
-              <h3 className="text-xl font-semibold gradient-text mb-3">Innovation</h3>
-              <p className="text-gray-600 leading-relaxed">Continuously seeking new and effective solutions to address complex food security and agricultural challenges.</p>
-            </motion.div>
-            <motion.div 
-              className="glass-card p-8 text-center"
-              variants={fadeInUp}
-              whileHover={{ 
-                scale: 1.02,
-                transition: { type: "spring", stiffness: 400, damping: 10 }
-              }}
-            >
-              <h3 className="text-xl font-semibold gradient-text mb-3">Community</h3>
-              <p className="text-gray-600 leading-relaxed">Building strong partnerships and empowering local communities through inclusive growth and development.</p>
-            </motion.div>
+          <h2 className="text-4xl font-extrabold text-gray-900 text-center mb-12">
+            Our Values
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {values.map((value, index) => (
+              <motion.div 
+                key={index}
+                className="glass-card-about p-8 text-center rounded-3xl shadow-xl border border-white border-opacity-20"
+                variants={fadeInUp}
+                whileHover={{ 
+                  y: -5,
+                  transition: { duration: 0.2, ease: "easeOut" }
+                }}
+              >
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">{value.title}</h3>
+                <p className="text-gray-700 leading-relaxed text-sm">{value.description}</p>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </motion.div>

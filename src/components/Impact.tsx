@@ -90,9 +90,13 @@ export const Impact = () => {
   ];
 
   return (
-    <section id="impact-section" className="py-24 bg-white text-gray-800">
+    <section id="impact-section" className="py-24 bg-gradient-to-br from-orange-50 to-green-50 text-gray-800 relative overflow-hidden">
+      {/* Decorative Background Shapes */}
+      <div className="absolute top-0 left-0 w-72 h-72 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" />
+      <div className="absolute bottom-0 right-0 w-72 h-72 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000" />
+
       <motion.div 
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
         style={{ opacity, y }}
         initial="initial"
         whileInView="animate"
@@ -122,21 +126,21 @@ export const Impact = () => {
             return (
               <motion.div 
                 key={index}
-                className="bg-white shadow-xl rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-300"
+                className="glass-card p-8 rounded-3xl text-center shadow-xl hover:shadow-2xl transition-all duration-300 border border-white border-opacity-20"
                 variants={fadeInUp}
                 whileHover={{ 
-                  scale: 1.02,
-                  transition: { type: "spring", stiffness: 400, damping: 10 }
+                  y: -5,
+                  transition: { type: "spring", stiffness: 300, damping: 20 }
                 }}
               >
                 <div
-                  className={`w-14 h-14 rounded-full ${stat.color} flex items-center justify-center mx-auto mb-5`}
+                  className={`w-16 h-16 rounded-full bg-gradient-to-br from-${stat.color.split(' ')[0].split('-')[0]}-400 to-${stat.color.split(' ')[1].split('-')[0]}-600 flex items-center justify-center mx-auto mb-5 shadow-md`}
                 >
-                  <Icon className="h-6 w-6" />
+                  <Icon className="h-8 w-8 text-gray-900" />
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
-                <h3 className="text-lg font-semibold text-gray-700 mb-2">{stat.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{stat.description}</p>
+                <div className="text-4xl font-bold text-gray-900 mb-1">{stat.value}</div>
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">{stat.title}</h3>
+                <p className="text-sm text-gray-700 leading-relaxed">{stat.description}</p>
               </motion.div>
             );
           })}
@@ -152,14 +156,14 @@ export const Impact = () => {
               key={index}
               className={`flex flex-col-reverse ${
                 index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-              } items-center gap-12`}
+              } items-center gap-12 bg-white/50 rounded-3xl shadow-xl p-6 md:p-10 border border-white border-opacity-20`}
               variants={fadeInUp}
               whileHover={{ 
                 scale: 1.01,
                 transition: { type: "spring", stiffness: 300, damping: 20 }
               }}
             >
-              <div className="flex-1 bg-gray-50 rounded-2xl p-10 shadow-md">
+              <div className="flex-1">
                 <h3 className="text-3xl font-bold text-gray-900 mb-4">{initiative.title}</h3>
                 <p className="text-base text-gray-700 leading-relaxed">{initiative.description}</p>
               </div>

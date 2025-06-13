@@ -63,24 +63,8 @@ const fadeInUp = {
     opacity: 1, 
     y: 0,
     transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 20,
-      mass: 0.5
-    }
-  }
-};
-
-const staggerContainer = {
-  initial: { opacity: 0 },
-  animate: { 
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1,
-      type: "spring",
-      stiffness: 100,
-      damping: 20
+      duration: 0.3,
+      ease: "easeOut"
     }
   }
 };
@@ -101,8 +85,8 @@ export const Products = () => {
         className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         initial="initial"
         whileInView="animate"
-        viewport={{ once: true, amount: 0.5 }}
-        variants={staggerContainer}
+        viewport={{ once: false, amount: 0.15 }}
+        variants={fadeInUp}
       >
         {/* Section Header */}
         <motion.div 
@@ -129,7 +113,7 @@ export const Products = () => {
             `}
             whileHover={{ 
               scale: 1.02,
-              transition: { type: "spring", stiffness: 400, damping: 10 }
+              transition: { duration: 0.2, ease: "easeOut" }
             }}
           >
             <Building className="w-5 h-5" /> Institutional
@@ -141,7 +125,7 @@ export const Products = () => {
             `}
             whileHover={{ 
               scale: 1.02,
-              transition: { type: "spring", stiffness: 400, damping: 10 }
+              transition: { duration: 0.2, ease: "easeOut" }
             }}
           >
             <Users className="w-5 h-5" /> Consumer
@@ -153,8 +137,8 @@ export const Products = () => {
           className="grid gap-10 px-4 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto relative z-10"
           initial="initial"
           whileInView="animate"
-          viewport={{ once: false, amount: 0.1 }}
-          variants={staggerContainer}
+          viewport={{ once: false, amount: 0.15 }}
+          variants={fadeInUp}
         >
           {products.map((p: ProductItem, i: number) => (
             <motion.div
@@ -163,7 +147,7 @@ export const Products = () => {
               variants={fadeInUp}
               whileHover={{
                 y: -5,
-                transition: { type: "spring", stiffness: 300, damping: 20 }
+                transition: { duration: 0.2, ease: "easeOut" }
               }}
             >
               {/* Background Gradient Circle */}
